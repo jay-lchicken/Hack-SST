@@ -157,7 +157,7 @@ export default function Home() {
           {error && <p className="text-red-500 text-sm mb-2">{error}</p>}
           <div class="max-w-screen-md p-9 w-[75%] mx-[10%] mb-[4%] bg-neutral-800 rounded-3xl md:p-14 md:w-[40%]">
             <input
-              class="p-3 rounded-2xl w-[100%] text-red-500 md:text-xl"
+              class="p-3 rounded-2xl w-[100%] text-red-500 md:text-xl mb-2"
               type="email"
               placeholder="Email"
               value={email}
