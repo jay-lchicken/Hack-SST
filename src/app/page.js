@@ -66,8 +66,8 @@ export default function Home() {
         <div class="max-w-screen-lg w-[80%] p-10 mx-[10%] mb-[4%] bg-neutral-800 rounded-3xl md:p-14">
           <img
             class="h-auto w-full object-cover rounded-3xl mb-4"
-            src="/src/BannerImg1.jpg"
-            alt="/src/BannerImg1.jpg"
+            src="./BannerImg1.jpg"
+            alt="./BannerImg1.jpg"
           />
           <h1 class="text-xl font-bold text-white pb-3 md:text-2xl">
             Who Are We?
