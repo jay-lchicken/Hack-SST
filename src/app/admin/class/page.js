@@ -10,23 +10,33 @@ const firebaseConfig = {
     projectId: "hackatsst-52e39",
     storageBucket: "hackatsst-52e39.firebasestorage.app",
     messagingSenderId: "693174506645",
-    appId: "1:693174506645:web:058e4de7d1763ab775379c"
+    appId: "1:693174506645:web:058e4de7d1763ab775379c",
 };
 
 // Initialize Firebase
 let auth;
 
-export default function Home() {
+export default function Announcements() {
     const [isAdmin, setIsAdmin] = useState(false);
-    const [classes, setClasses] = useState([]);
+    const [announcements, setAnnouncements] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
     const [showPopup, setShowPopup] = useState(false);
-    const [className, setClassName] = useState("");
+    const [announcementText, setAnnouncementText] = useState("");
     const [popupError, setPopupError] = useState("");
     const [userID, setUserID] = useState("");
+    const [classID, setClassID] = useState(""); // Store classID
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [announcementTitle, setAnnouncementTitle] = useState("");
     useEffect(() => {
+        // Get the classID from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const classIDS = urlParams.get("classID");
+
+        // Set classID in state
+        setClassID(classIDS);
+
+        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         auth = getAuth(app);
 
@@ -37,14 +47,15 @@ export default function Home() {
                     const adminStatus = await checkAdminStatus(currentUser.uid);
                     setIsAdmin(adminStatus);
                     setUserID(currentUser.uid);
-                    if (adminStatus) {
-                        // Fetch admin classes if the user is an admin
-                        const data = await fetchAdminClasses();
-                        setClasses(data.classes || []);
+
+                    if (adminStatus && classIDS) {
+                        // Fetch announcements only if admin and classID exist
+                        const data = await fetchAnnouncements(classIDS, currentUser.uid);
+                        setAnnouncements(data.announcements || []);
                     }
                 } catch (err) {
-                    console.error("Error fetching admin classes:", err.message);
-                    setError("Failed to load admin data. Please try again.");
+                    console.error("Error fetching announcements:", err.message);
+                    setError("Failed to load announcements. Please try again.");
                 } finally {
                     setLoading(false);
                 }
@@ -57,16 +68,19 @@ export default function Home() {
         // Cleanup listener on unmount
         return () => unsubscribe();
     }, []);
-    const handleAddClass = async () => {
+
+    const handleAddAnnouncement = async () => {
         setIsSubmitting(true);
-        if (!className) {
-            setPopupError("All fields required.");
+        if (!announcementText) {
+            setPopupError("Announcement text is required.");
             return;
         }
 
         try {
             const response = await fetch(
-                `/api/addAdminClasses?adminUID=${userID}&userID=${userID}&class=${className}`,
+                `/api/addAnnouncement?title=${announcementTitle}&classID=${classID}&description=${encodeURIComponent(
+                    announcementText
+                )}&adminUID=${userID}`,
                 {
                     method: "POST",
                 }
@@ -74,19 +88,20 @@ export default function Home() {
 
             if (!response.ok) {
                 const errorData = await response.json();
-                throw new Error(errorData.error || "Failed to add class.");
+                throw new Error(errorData.error || "Failed to add announcement.");
             }
 
             // Success
-            console.log("Class added successfully.");
+            console.log("Announcement added successfully.");
             window.location.reload();
             setShowPopup(false); // Close the popup
         } catch (err) {
-            console.error("Error adding class:", err.message);
+            console.error("Error adding announcement:", err.message);
             setPopupError(err.message);
         }
         setIsSubmitting(false);
     };
+
     const checkAdminStatus = async (userId) => {
         const response = await fetch(`/api/checkAdmin?id=${userId}`);
         if (!response.ok) {
@@ -96,10 +111,10 @@ export default function Home() {
         return data.isAdmin;
     };
 
-    const fetchAdminClasses = async () => {
-        const response = await fetch(`/api/getAdminClasses?userID=${auth.currentUser.uid}`);
+    const fetchAnnouncements = async (classID, userID) => {
+        const response = await fetch(`/api/getClassAnnouncements?userID=${userID}&classID=${classID}`);
         if (!response.ok) {
-            throw new Error("Failed to fetch admin classes");
+            throw new Error("Failed to fetch announcements");
         }
         const data = await response.json();
         return data;
@@ -126,30 +141,28 @@ export default function Home() {
             {isAdmin ? (
                 <div className="w-full max-w-2xl bg-white shadow-md rounded-lg p-4">
                     <div className="flex items-center justify-between mb-4">
-                        <h1 className="text-2xl font-bold mb-4">Your Classes</h1>
-                        <button className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
-                        onClick={() => setShowPopup(true)}>
-                            Add Class
+                        <h1 className="text-2xl font-bold mb-4">Class Announcements</h1>
+                        <button
+                            className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
+                            onClick={() => setShowPopup(true)}
+                        >
+                            Add Announcement
                         </button>
                     </div>
                     <ul>
-                        {classes.length > 0 ? (
-                            classes.map((cls) => (
+                        {announcements.length > 0 ? (
+                            announcements.map((announcement) => (
                                 <li
-                                    key={cls.id}
-                                    className="p-2 border-b border-gray-300  flex justify-between items-center"
+                                    key={announcement.id}
+                                    className="p-2 border-b border-gray-300 flex flex-col align-top justify-start"
                                 >
-                                    <span className={"text-black"}>{cls.name}</span>
-                                    <button
-                                        className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
-                                        onClick={() => (window.location.href = `../admin/class?classID=${cls.id}`)}
-                                    >
-                                        View
-                                    </button>
+                                    <h1 className={"text-black text-4xl"}>{announcement.title}</h1>
+                                    <span className={"text-black"}>{announcement.description}</span>
+
                                 </li>
                             ))
                         ) : (
-                            <p>No classes found.</p>
+                            <p>No announcements found.</p>
                         )}
                     </ul>
                 </div>
@@ -159,20 +172,26 @@ export default function Home() {
             {showPopup && (
                 <div className="fixed inset-0 bg-white bg-opacity-50 flex items-center justify-center">
                     <div className="bg-white p-6 rounded-lg shadow-lg w-96">
-                        <h2 className="text-xl font-bold mb-4">Add Class</h2>
+                        <h2 className="text-xl font-bold mb-4 text-black">Add Announcement</h2>
                         {popupError && <p className="text-red-500 text-sm mb-2">{popupError}</p>}
-
                         <input
                             type="text"
-                            placeholder="Class Name"
-                            value={className}
-                            onChange={(e) => setClassName(e.target.value)}
+                            placeholder="Announcement Title"
+                            value={announcementTitle}
+                            onChange={(e) => setAnnouncementTitle(e.target.value)}
                             className="w-full h-10 bg-gray-200 text-red-500 rounded-lg px-4 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400"
                         />
+                        <textarea
+                            placeholder="Enter announcement text"
+                            value={announcementText}
+                            onChange={(e) => setAnnouncementText(e.target.value)}
+                            className="w-full h-20 bg-gray-200 text-black rounded-lg px-4 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        />
+
                         <div className="flex justify-end">
                             <button
                                 className="bg-blue-500 text-white px-4 py-2 rounded-lg mr-2 hover:bg-blue-600"
-                                onClick={handleAddClass}
+                                onClick={handleAddAnnouncement}
                             >
                                 {isSubmitting ? "Adding..." : "Add"}
                             </button>
