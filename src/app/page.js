@@ -58,7 +58,7 @@ export default function Home() {
           </h1>
           <a
             class="text-center p-3 px-10 mt-5 bg-red-500 font-bold text-white rounded-2xl md:px-16 hover:text-red-500 hover:bg-white"
-            href="auth.html"
+            onClick={change}
           >
             Sign In As Member
           </a>
