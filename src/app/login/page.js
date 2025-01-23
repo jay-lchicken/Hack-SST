@@ -124,13 +124,13 @@ export default function Home() {
           <h1 class="text-4xl text-red-500 font-bold md:text-6xl pl-2">
             Hack@SST
           </h1>
-          <h1 class="h-[60px] w-28 text-xl font-semibold">
+          <h1 class="h-[60px] w-28 text-xl font-semibold text-white">
             a branch of
             <span>
               <a
                 href="https://hackclub.com"
                 target="_blank"
-                class="text-xl font-semibold text-red-500 underline hover:decoration-wavy"
+                class="text-xl font-semibold text-red-500 underline hover:decoration-wavy px-1"
               >
                 Hack Club
               </a>
@@ -138,7 +138,7 @@ export default function Home() {
           </h1>
         </div>
       </header>
-      <main class="bg-neutral-900 w-full flex flex-col justify-evenly items-center">
+      <main class="bg-neutral-900 w-full flex flex-col justify-evenly items-center m-0">
         <div class="mt-9 max-w-screen-lg w-[80%] p-10 mx-[10%] flex flex-col items-center">
           <img
             class="w-full md:w-[45%]"
@@ -157,14 +157,14 @@ export default function Home() {
           {error && <p className="text-red-500 text-sm mb-2">{error}</p>}
           <div class="max-w-screen-md p-9 w-[75%] mx-[10%] mb-[4%] bg-neutral-800 rounded-3xl md:p-14 md:w-[40%]">
             <input
-              class="p-3 rounded-2xl w-[110%] text-red-500 md:text-xl"
+              class="p-3 rounded-2xl w-[100%] text-red-500 md:text-xl"
               type="email"
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
             <input
-              class="p-3 rounded-2xl w-[110%] text-red-500 md:text-xl"
+              class="p-3 rounded-2xl w-[100%] text-red-500 md:text-xl"
               type="password"
               placeholder="Password"
               value={password}
