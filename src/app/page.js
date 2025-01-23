@@ -31,7 +31,7 @@ export default function Home() {
           </h1>
         </div>
       </header>
-      <main class="bg-neutral-900 w-full flex flex-col justify-evenly items-center pb-8">
+      <main class="bg-neutral-900 w-full flex flex-col justify-evenly items-center pb-8 m-0">
         <div class="mt-9 max-w-screen-lg w-[80%] p-10 mx-[10%] flex flex-col items-center">
           <img
             class="w-full md:w-[60%]"
