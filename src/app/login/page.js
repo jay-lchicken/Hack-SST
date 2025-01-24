@@ -177,6 +177,13 @@ export default function Home() {
           >
             Login
           </button>
+          {user && (
+              <div className="mt-4">
+                <p className="text-green-600 font-semibold">
+                  Signed in as: {user.email}
+                </p>
+              </div>
+          )}
           <a
             href="https://hackclub.techtime.coffee"
             class="text-white my-5 hover:font-semibold"
@@ -184,13 +191,7 @@ export default function Home() {
             &larr; back to main website
           </a>
         </form>
-        {user && (
-          <div className="mt-4">
-            <p className="text-green-600 font-semibold">
-              Signed in as: {user.email}
-            </p>
-          </div>
-        )}
+
       </main>
     </body>
   );
