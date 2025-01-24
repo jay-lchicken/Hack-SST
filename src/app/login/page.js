@@ -64,7 +64,7 @@ export default function Home() {
         console.log('User is not an admin.');
       }
     } catch (err) {
-      setError(err.message); // Display the error message
+      setError("Error logging you in"); // Display the error message
       console.error('Error logging in:', err);
     }
   };
