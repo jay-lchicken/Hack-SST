@@ -177,7 +177,10 @@ export default function Home() {
           >
             Login
           </button>
-          <a href="index.html" class="text-white my-5 hover:font-semibold">
+          <a
+            href="https://hackclub.techtime.coffee"
+            class="text-white my-5 hover:font-semibold"
+          >
             &larr; back to main website
           </a>
         </form>
