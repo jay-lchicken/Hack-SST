@@ -8,26 +8,25 @@ export default function Home() {
   return (
 
     <body class=" w-screen h-full">
-      <header>
-        <div class="w-full h-[20%]  bg-neutral-800 flex justify-center items-center font-sans text-white gap-2 flex-wrap">
-          <h1 class="text-4xl text-red-500 font-bold md:text-6xl pl-2">
+
+      <main class="bg-neutral-900 w-full flex flex-col justify-evenly items-center pb-8 m-0">
+        <header className="w-screen  flex justify-center items-center flex-wrap">
+          <h1 className="text-4xl text-red-500 font-bold md:text-6xl pl-2">
             Hack@SST
           </h1>
-          <h1 class="h-[60px] w-28 text-xl font-semibold text-white">
+          <h1 class="h-[60px] w-32 text-xl font-semibold text-white">
             a branch of
             <span>
-              <a
-                href="https://hackclub.com"
-                target="_blank"
-                class="text-xl font-semibold text-red-500 underline hover:decoration-wavy px-1"
-              >
-                Hack Club
-              </a>
-            </span>
+                <a
+                    href="https://hackclub.com"
+                    target="_blank"
+                    class="text-xl font-semibold text-red-500 underline hover:decoration-wavy px-1"
+                >
+                  Hack Club
+                </a>
+              </span>
           </h1>
-        </div>
-      </header>
-      <main class="bg-neutral-900 w-full flex flex-col justify-evenly items-center pb-8 m-0">
+        </header>
         <div class="mt-9 max-w-screen-lg w-[80%] p-10 mx-[10%] flex flex-col items-center">
           <img
             class="w-full md:w-[60%]"
