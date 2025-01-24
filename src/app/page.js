@@ -6,14 +6,10 @@ export default function Home() {
     window.location.href = '/login';
   }
   return (
-    // <div className="flex flex-col items-center justify-center min-h-screen">
-    //       <button className="w-40 h-10 bg-red-500 rounded-3xl" onClick={change}>
-    //           Login
-    //       </button>
-    //   </div>
-    <body class="bg-neutral-900">
+
+    <body class=" w-screen h-full">
       <header>
-        <div class="w-full h-[20%] bg-neutral-800 flex justify-center items-center font-sans text-white gap-2 flex-wrap">
+        <div class="w-full h-[20%]  bg-neutral-800 flex justify-center items-center font-sans text-white gap-2 flex-wrap">
           <h1 class="text-4xl text-red-500 font-bold md:text-6xl pl-2">
             Hack@SST
           </h1>
