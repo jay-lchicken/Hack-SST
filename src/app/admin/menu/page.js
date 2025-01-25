@@ -176,7 +176,7 @@ export default function Home() {
             {showPopup && (
                 <div className="fixed inset-0 bg-white bg-opacity-50 flex items-center justify-center">
                     <div className="bg-white p-6 rounded-lg shadow-lg w-96">
-                        <h2 className="text-xl font-bold mb-4">Add Class</h2>
+                        <h2 className="text-xl font-bold mb-4 text-black">Add Class</h2>
                         {popupError && <p className="text-red-500 text-sm mb-2">{popupError}</p>}
 
                         <input
