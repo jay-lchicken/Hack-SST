@@ -108,7 +108,7 @@ export default function Home() {
     if (loading) {
         return (
             <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-                <p>Loading...</p>
+                <p className="text-black">Loading...</p>
             </div>
         );
     }
@@ -149,12 +149,12 @@ export default function Home() {
                                 </li>
                             ))
                         ) : (
-                            <p>No classes found.</p>
+                            <p className="text-black">No classes found.</p>
                         )}
                     </ul>
                 </div>
             ) : (
-                <p>You are not authorized to view this page.</p>
+                <p className="text-black">You are not authorized to view this page.</p>
             )}
             {showPopup && (
                 <div className="fixed inset-0 bg-white bg-opacity-50 flex items-center justify-center">
