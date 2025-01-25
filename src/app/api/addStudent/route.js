@@ -62,6 +62,17 @@ export async function POST(request) {
             email: email,
             timestamp: admin.firestore.FieldValue.serverTimestamp(),
         });
+        const classesRef = db.collection('users').doc(adminUID).collection('classes').doc(classID);
+        const classData = await classesRef.get();
+        const className = classData.data().name;
+        const studentClassRef = db.collection('users').doc(userID).collection('joinedClasses');
+        const newClassRefe = studentClassRef.doc(classID);
+        await newClassRefe.set({
+            id: classID,
+            className:className,
+            classID: classID,
+            teacherId: adminUID,
+        });
 
 
         return NextResponse.json({ success: true, message: 'Announcement added successfully' }, { status: 200 });

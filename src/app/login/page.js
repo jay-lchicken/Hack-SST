@@ -37,6 +37,8 @@ export default function Home() {
         const isAdmin = await checkAdminStatus(currentUser.uid);
         if (isAdmin) {
           window.location.href = '/admin/menu';
+        }else{
+          window.location.href = '/student';
         }
       } else {
         console.log('No user is signed in.');
