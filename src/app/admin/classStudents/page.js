@@ -49,8 +49,11 @@ export default function Announcements() {
                     setUserID(currentUser.uid);
 
                     if (adminStatus && classIDS) {
+                        const adminID = await fetchAdminID(currentUser.uid);
+                        // Set the userID state
+                        setUserID(adminID.uid);
                         // Fetch announcements only if admin and classID exist
-                        const data = await fetchAnnouncements(classIDS, currentUser.uid);
+                        const data = await fetchAnnouncements(classIDS, adminID.uid);
                         setAnnouncements(data.students || []);
                     }
                 } catch (err) {
@@ -68,7 +71,15 @@ export default function Announcements() {
         // Cleanup listener on unmount
         return () => unsubscribe();
     }, []);
+    const fetchAdminID = async (userID) => {
+        const response = await fetch(`/api/getAdminID?userID=${userID}`);
+        if (!response.ok) {
+            throw new Error("Failed to fetch admin ID");
+        }
+        const data = await response.json();
 
+        return data;
+    }
     const handleAddAnnouncement = async () => {
         setIsSubmitting(true);
         if (!emailOfStudent || !nameOfStudent) {

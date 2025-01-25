@@ -33,20 +33,29 @@ export default function Home() {
         const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
             if (currentUser) {
                 try {
+                    setLoading(true); // Show loading state
+
                     // Check if the current user is an admin
                     const adminStatus = await checkAdminStatus(currentUser.uid);
                     setIsAdmin(adminStatus);
-                    setUserID(currentUser.uid);
                     if (adminStatus) {
-                        // Fetch admin classes if the user is an admin
-                        const data = await fetchAdminClasses();
-                        setClasses(data.classes || []);
+                        const adminID = await fetchAdminID(currentUser.uid);
+                        // Set the userID state
+                        setUserID(adminID.uid);
+                        // Use adminID.uid directly here to ensure the value is available
+                        const adminClasses = await fetchAdminClasses(adminID.uid);
+                        setClasses(adminClasses.classes || []);
                     }
+
+                    // Fetch additional data for admin
+
+
+
                 } catch (err) {
-                    console.error("Error fetching admin classes:", err.message);
-                    setError("Failed to load admin data. Please try again.");
+                    console.error("Error fetching admin data:", err.message);
+                    setError("An error occurred while loading admin data. Please try again.");
                 } finally {
-                    setLoading(false);
+                    setLoading(false); // Remove loading state
                 }
             } else {
                 // Redirect to login if no user is logged in
@@ -95,9 +104,17 @@ export default function Home() {
         const data = await response.json();
         return data.isAdmin;
     };
+    const fetchAdminID = async (userID) => {
+        const response = await fetch(`/api/getAdminID?userID=${userID}`);
+        if (!response.ok) {
+            throw new Error("Failed to fetch admin ID");
+        }
+        const data = await response.json();
 
-    const fetchAdminClasses = async () => {
-        const response = await fetch(`/api/getAdminClasses?userID=${auth.currentUser.uid}`);
+        return data;
+    }
+    const fetchAdminClasses = async (userId) => {
+        const response = await fetch(`/api/getAdminClasses?userID=${userId}`);
         if (!response.ok) {
             throw new Error("Failed to fetch admin classes");
         }
