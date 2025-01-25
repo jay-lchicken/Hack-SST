@@ -62,8 +62,8 @@ export default function Home() {
 
       if (isAdmin) {
         window.location.href = '/admin/menu';
-      } else {
-        console.log('User is not an admin.');
+      } else{
+        window.location.href = '/student';
       }
     } catch (err) {
       setError("Error logging you in"); // Display the error message
