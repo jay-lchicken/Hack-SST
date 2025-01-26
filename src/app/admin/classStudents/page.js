@@ -84,6 +84,8 @@ export default function Announcements() {
         setIsSubmitting(true);
         if (!emailOfStudent || !nameOfStudent) {
             setPopupError("Announcement text is required.");
+            setIsSubmitting(false);
+
             return;
         }
 
@@ -100,6 +102,8 @@ export default function Announcements() {
             if (!response.ok) {
                 const errorData = await response.json();
                 throw new Error(errorData.error || "Failed to add student.");
+                setIsSubmitting(false);
+
             }
 
             // Success
@@ -109,6 +113,8 @@ export default function Announcements() {
         } catch (err) {
             console.error("Error adding student:", err.message);
             setPopupError(err.message);
+            setIsSubmitting(false);
+
         }
         setIsSubmitting(false);
     };

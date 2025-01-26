@@ -91,34 +91,27 @@ export default function Announcements() {
     }
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-
-                <div className="w-full max-w-2xl bg-white shadow-md rounded-lg p-4">
-                    <div className="flex items-center justify-between mb-4">
-                        <h1 className="text-2xl font-bold mb-4">Class Announcements</h1>
-
-
-
-                    </div>
-                    <ul>
-                        {announcements.length > 0 ? (
-                            announcements.map((announcement) => (
-                                <li
-                                    key={announcement.id}
-                                    className="p-2 border-b border-gray-300 flex flex-col align-top justify-start"
-                                >
-                                    <h1 className={"text-black text-4xl"}>{announcement.title}</h1>
-                                    <span className={"text-black"}>{announcement.description}</span>
-
-                                </li>
-                            ))
-                        ) : (
-                            <p className="text-black">No announcements found.</p>
-                        )}
-                    </ul>
-                </div>
-
-
+        <body className="bg-neutral-900 flex flex-col items-center justify-center min-h-screen">
+        <div className="w-full max-w-2xl bg-neutral-800 shadow-md rounded-lg p-6">
+            <div className="flex items-center justify-between mb-6">
+                <h1 className="text-2xl font-bold text-white">Class Announcements</h1>
+            </div>
+            <ul>
+                {announcements.length > 0 ? (
+                    announcements.map((announcement) => (
+                        <li
+                            key={announcement.id}
+                            className="p-4 border-b border-neutral-700 flex flex-col justify-start"
+                        >
+                            <h1 className="text-white text-4xl mb-2">{announcement.title}</h1>
+                            <span className="text-white">{announcement.description}</span>
+                        </li>
+                    ))
+                ) : (
+                    <p className="text-white">No announcements found.</p>
+                )}
+            </ul>
         </div>
+        </body>
     );
 }

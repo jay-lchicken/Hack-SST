@@ -70,6 +70,8 @@ export default function Home() {
         setIsSubmitting(true);
         if (!className) {
             setPopupError("All fields required.");
+            setIsSubmitting(false);
+
             return;
         }
 
@@ -84,6 +86,8 @@ export default function Home() {
             if (!response.ok) {
                 const errorData = await response.json();
                 throw new Error(errorData.error || "Failed to add class.");
+                setIsSubmitting(false);
+
             }
 
             // Success
@@ -92,6 +96,7 @@ export default function Home() {
             setShowPopup(false); // Close the popup
         } catch (err) {
             console.error("Error adding class:", err.message);
+            setIsSubmitting(false);
             setPopupError(err.message);
         }
         setIsSubmitting(false);

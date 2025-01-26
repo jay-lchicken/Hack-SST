@@ -80,64 +80,63 @@ export default function Home() {
     }
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-
-                <div className="w-full max-w-2xl bg-white shadow-md rounded-lg p-4">
-                    <div className="flex items-center justify-between mb-4">
-                        <h1 className="text-2xl font-bold mb-4">Your Classes</h1>
-                    </div>
-                    <ul>
-                        {classes.length > 0 ? (
-                            classes.map((cls) => (
-                                <li
-                                    key={cls.id}
-                                    className="p-2 border-b border-gray-300  flex justify-between items-center"
-                                >
-                                    <span className={"text-black"}>{cls.name}</span>
-                                    <button
-                                        className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
-                                        onClick={() => (window.location.href = `../student/class?classID=${cls.id}`)}
-                                    >
-                                        View
-                                    </button>
-                                </li>
-                            ))
-                        ) : (
-                            <p className="text-black">No classes found.</p>
-                        )}
-                    </ul>
-                </div>
-
-            {showPopup && (
-                <div className="fixed inset-0 bg-white bg-opacity-50 flex items-center justify-center">
-                    <div className="bg-white p-6 rounded-lg shadow-lg w-96">
-                        <h2 className="text-xl font-bold mb-4">Add Class</h2>
-                        {popupError && <p className="text-red-500 text-sm mb-2">{popupError}</p>}
-
-                        <input
-                            type="text"
-                            placeholder="Class Name"
-                            value={className}
-                            onChange={(e) => setClassName(e.target.value)}
-                            className="w-full h-10 bg-gray-200 text-red-500 rounded-lg px-4 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                        />
-                        <div className="flex justify-end">
+        <body className="bg-neutral-900 flex flex-col items-center justify-center min-h-screen">
+        <div className="w-full max-w-2xl bg-neutral-800 shadow-md rounded-lg p-6">
+            <div className="flex items-center justify-between mb-6">
+                <h1 className="text-2xl font-bold text-white">Your Classes</h1>
+            </div>
+            <ul>
+                {classes.length > 0 ? (
+                    classes.map((cls) => (
+                        <li
+                            key={cls.id}
+                            className="p-4 border-b border-neutral-700 flex justify-between items-center"
+                        >
+                            <span className="text-white">{cls.name}</span>
                             <button
-                                className="bg-blue-500 text-white px-4 py-2 rounded-lg mr-2 hover:bg-blue-600"
-                                onClick={handleAddClass}
+                                className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-white hover:text-red-500"
+                                onClick={() => (window.location.href = `../student/class?classID=${cls.id}`)}
                             >
-                                {isSubmitting ? "Adding..." : "Add"}
+                                View
                             </button>
-                            <button
-                                className="bg-gray-300 px-4 py-2 rounded-lg hover:bg-gray-400"
-                                onClick={() => setShowPopup(false)}
-                            >
-                                Cancel
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            )}
+                        </li>
+                    ))
+                ) : (
+                    <p className="text-white">No classes found.</p>
+                )}
+            </ul>
         </div>
+
+        {showPopup && (
+            <div className="fixed inset-0 bg-neutral-900 bg-opacity-75 flex items-center justify-center">
+                <div className="bg-neutral-800 p-6 rounded-lg shadow-lg w-96">
+                    <h2 className="text-xl font-bold text-white mb-6">Add Class</h2>
+                    {popupError && <p className="text-red-500 text-sm mb-4">{popupError}</p>}
+
+                    <input
+                        type="text"
+                        placeholder="Class Name"
+                        value={className}
+                        onChange={(e) => setClassName(e.target.value)}
+                        className="w-full h-10 bg-neutral-700 text-red-500 rounded-lg px-4 mb-6 focus:outline-none focus:ring-2 focus:ring-red-500"
+                    />
+                    <div className="flex justify-end">
+                        <button
+                            className="bg-red-500 text-white px-4 py-2 rounded-lg mr-2 hover:bg-white hover:text-red-500"
+                            onClick={handleAddClass}
+                        >
+                            {isSubmitting ? "Adding..." : "Add"}
+                        </button>
+                        <button
+                            className="bg-neutral-600 px-4 py-2 rounded-lg hover:bg-neutral-700 text-white"
+                            onClick={() => setShowPopup(false)}
+                        >
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        )}
+        </body>
     );
 }
