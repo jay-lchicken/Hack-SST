@@ -30,6 +30,8 @@ export default function Announcements() {
     const [emailOfStudent, setEmailOfStudent] = useState("");
     const [eventStart, setEventStart] = useState("");
     const [eventEnd, setEventEnd] = useState("")
+    const [trueTitle, setTrueTitle] = useState("")
+    const [falseTitle, setFalseTitle] = useState("")
 
     useEffect(() => {
         // Get the classID from the URL
@@ -99,7 +101,7 @@ export default function Announcements() {
             const startTimestamp = startDate.getTime();
             const endTimestamp = endDate.getTime();
             const response = await fetch(
-                `/api/addEvent?name=${nameOfEvent}&start=${startTimestamp}&end=${endTimestamp}&adminUID=${userID}&classID=${classID}`,
+                `/api/addEvent?name=${nameOfEvent}&start=${startTimestamp}&end=${endTimestamp}&adminUID=${userID}&classID=${classID}&true=${trueTitle}&false=${falseTitle}`,
                 {
                     method: "POST",
                 }
@@ -214,6 +216,20 @@ export default function Announcements() {
                             placeholder="Name of event"
                             value={nameOfEvent}
                             onChange={(e) => setNameOfEvent(e.target.value)}
+                            className="w-full h-10 bg-gray-200 text-red-500 rounded-lg px-4 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        />
+                        <input
+                            type="text"
+                            placeholder="True Title"
+                            value={trueTitle}
+                            onChange={(e) => setTrueTitle(e.target.value)}
+                            className="w-full h-10 bg-gray-200 text-red-500 rounded-lg px-4 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        />
+                        <input
+                            type="text"
+                            placeholder="False Title"
+                            value={falseTitle}
+                            onChange={(e) => setFalseTitle(e.target.value)}
                             className="w-full h-10 bg-gray-200 text-red-500 rounded-lg px-4 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400"
                         />
                         <div className="flex flex-col">

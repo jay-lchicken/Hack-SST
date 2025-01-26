@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import * as admin from 'firebase-admin';
+import * as sea from "node:sea";
 
 if (!admin.apps.length) {
     try {
@@ -29,6 +30,9 @@ export async function POST(request) {
         const end = searchParams.get('end');
         const adminUID = searchParams.get('adminUID');
         const classID = searchParams.get('classID')
+        const falseTit = searchParams.get('false')
+        const trueTit = searchParams.get('true')
+
         if (!name || !start || !end || !adminUID ||!classID) {
             return NextResponse.json(
                 { error: 'Missing required parameters' },
@@ -57,6 +61,8 @@ export async function POST(request) {
             name: name,
             start: start,
             end: end,
+            trueTitle: trueTit,
+            falseTitle: falseTit
         });
 
         const studentsRef = db

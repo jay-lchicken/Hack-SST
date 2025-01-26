@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4b79a46b-3030-48a9-a32d-0e0678d17c27" name="Changes" comment="Added Change Of Attendance Status">
-      <change afterPath="$PROJECT_DIR$/src/app/api/getStudentAttendance/route.js" afterDir="false" />
+    <list default="true" id="4b79a46b-3030-48a9-a32d-0e0678d17c27" name="Changes" comment="Added Student View For attendance">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/admin/class/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/admin/class/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/api/getAdminID/route.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/getAdminID/route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/student/class/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/student/class/page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/admin/classEvent/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/admin/classEvent/page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/admin/classEvents/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/admin/classEvents/page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/api/addEvent/route.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/addEvent/route.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +89,7 @@
       <workItem from="1737787336874" duration="3068000" />
       <workItem from="1737796588304" duration="3105000" />
       <workItem from="1737809217117" duration="33000" />
-      <workItem from="1737867713024" duration="9766000" />
+      <workItem from="1737867713024" duration="10967000" />
     </task>
     <task id="LOCAL-00001" summary="Creation">
       <option name="closed" value="true" />
@@ -220,7 +219,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737874811063</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Added Student View For attendance">
+      <option name="closed" value="true" />
+      <created>1737878339422</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1737878339422</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -255,6 +262,7 @@
     <MESSAGE value="Added Account Syncing feature" />
     <MESSAGE value="Added support for Events" />
     <MESSAGE value="Added Change Of Attendance Status" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Change Of Attendance Status" />
+    <MESSAGE value="Added Student View For attendance" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Student View For attendance" />
   </component>
 </project>

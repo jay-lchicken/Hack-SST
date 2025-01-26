@@ -231,7 +231,7 @@ export default function Announcements() {
                                                     : "bg-red-500/50 border border-red-500 border-4 text-opacity-100"
                                             }`}
                                         >
-    {announcement.attended ? "Attended" : "Not Attended"}
+    {announcement.attended ? "True" : "False"}
   </span>
                                     </div>
 
@@ -269,14 +269,14 @@ export default function Announcements() {
                                 onClick={() => handlePopupSubmit(true)} // Submit as "Attended: Yes"
                                 disabled={isUpdating}
                             >
-                                {isUpdating ? "Updating..." : "Mark as Attended"}
+                                {isUpdating ? "Updating..." : "Mark as True"}
                             </button>
                             <button
                                 className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
                                 onClick={() => handlePopupSubmit(false)} // Submit as "Attended: No"
                                 disabled={isUpdating}
                             >
-                                {isUpdating ? "Updating..." : "Mark as Not Attended"}
+                                {isUpdating ? "Updating..." : "Mark as False"}
                             </button>
                             <button
                                 className="bg-gray-300 px-4 py-2 rounded-md hover:bg-gray-400"
