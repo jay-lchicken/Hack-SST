@@ -17,6 +17,7 @@ const firebaseConfig = {
 let auth;
 
 export default function Announcements() {
+    const [isSidebarOpen, setSidebarOpen] = useState(false);
     const [isAdmin, setIsAdmin] = useState(false);
     const [announcements, setAnnouncements] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -28,6 +29,8 @@ export default function Announcements() {
     const [classID, setClassID] = useState(""); // Store classID
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [announcementTitle, setAnnouncementTitle] = useState("");
+    const [attendance, setAttendance] = useState("");
+
     useEffect(() => {
         // Get the classID from the URL
         const urlParams = new URLSearchParams(window.location.search);
@@ -46,6 +49,9 @@ export default function Announcements() {
                     // Check if the current user is an admin
                     const data = await fetchAnnouncements(classIDS, currentUser.uid);
                     setAnnouncements(data.announcements || []);
+                    const sdata = await fetchAttendance(classIDS, currentUser.uid);
+                    setAttendance(sdata.announcements || []);
+
                 } catch (err) {
                     console.error("Error fetching announcements:", err.message);
                     setError("Failed to load announcements. Please try again.");
@@ -73,6 +79,14 @@ export default function Announcements() {
         const data = await response.json();
         return data;
     };
+    const fetchAttendance = async (classID, userID) => {
+        const response = await fetch(`/api/getStudentAttendance?userID=${userID}&classID=${classID}`);
+        if (!response.ok) {
+            throw new Error("Failed to fetch announcements");
+        }
+        const data = await response.json();
+        return data;
+    };
 
     if (loading) {
         return (
@@ -91,27 +105,88 @@ export default function Announcements() {
     }
 
     return (
-        <body className="bg-neutral-900 flex flex-col items-center justify-center min-h-screen">
-        <div className="w-full max-w-2xl bg-neutral-800 shadow-md rounded-lg p-6">
-            <div className="flex items-center justify-between mb-6">
-                <h1 className="text-2xl font-bold text-white">Class Announcements</h1>
+        <div className="bg-neutral-900 flex flex-col items-center justify-center min-h-screen">
+            {/* Main Content */}
+            <div className="w-full max-w-2xl bg-neutral-800 shadow-md rounded-lg p-6">
+                <div className="flex items-center justify-between mb-6">
+                    <h1 className="text-2xl font-bold text-white">Class Announcements</h1>
+                    <button
+                        className="text-white text-xl px-4 py-2 bg-red-500 rounded-lg hover:bg-red-600"
+                        onClick={() => setSidebarOpen(true)}
+                    >
+                        ☰ Attendance
+                    </button>
+                </div>
+                <ul>
+                    {announcements.length > 0 ? (
+                        announcements.map((announcement) => (
+                            <li
+                                key={announcement.id}
+                                className="p-4 border-b border-neutral-700 flex flex-col justify-start"
+                            >
+                                <h1 className="text-white text-4xl mb-2">{announcement.title}</h1>
+                                <span className="text-white">{announcement.description}</span>
+                            </li>
+                        ))
+                    ) : (
+                        <p className="text-white">No announcements found.</p>
+                    )}
+                </ul>
             </div>
-            <ul>
-                {announcements.length > 0 ? (
-                    announcements.map((announcement) => (
-                        <li
-                            key={announcement.id}
-                            className="p-4 border-b border-neutral-700 flex flex-col justify-start"
-                        >
-                            <h1 className="text-white text-4xl mb-2">{announcement.title}</h1>
-                            <span className="text-white">{announcement.description}</span>
-                        </li>
-                    ))
-                ) : (
-                    <p className="text-white">No announcements found.</p>
-                )}
-            </ul>
+
+            {/* Sidebar for Attendance */}
+            <div
+                className={`fixed top-0 right-0 h-full w-96 bg-neutral-700 shadow-lg p-6 transform ${
+                    isSidebarOpen ? 'translate-x-0' : 'translate-x-full'
+                } transition-transform duration-300 z-50`}
+            >
+                <div className="flex items-center justify-between mb-6">
+                    <h1 className="text-2xl font-bold text-white">Class Attendance</h1>
+                    <button
+                        className="text-white text-xl px-4 py-2 bg-red-500 rounded-lg hover:bg-red-600"
+                        onClick={() => setSidebarOpen(false)}
+                    >
+                        ✕ Close
+                    </button>
+                </div>
+                <ul>
+                    {attendance.length > 0 ? (
+                        attendance.map((attendee) => (
+                            <li
+                                key={attendee.id}
+                                className="p-4 border-b border-neutral-600 flex flex-col justify-start"
+                            >
+                                <h1 className="text-white text-4xl mb-2">{attendee.name}</h1>
+                                <span className={"text-white"}>
+  Start: {new Date(Number(attendee.start)).toLocaleString()}
+</span>
+                                <span className={"text-white"}>
+  End: {new Date(Number(attendee.end)).toLocaleString()}
+</span>
+                                <span
+                                    className={`mt-4 px-4 py-2 rounded-full text-white text-sm font-semibold inline-block ${
+                                        attendee.attended
+                                            ? 'bg-green-500/50 border border-green-500'
+                                            : 'bg-red-500/50 border border-red-500'
+                                    }`}
+                                >
+            {attendee.attended ? 'Attended' : 'Not Attended'}
+          </span>
+                            </li>
+                        ))
+                    ) : (
+                        <p className="text-white">No attendance records found.</p>
+                    )}
+                </ul>
+            </div>
+
+            {/* Sidebar Background Overlay */}
+            {isSidebarOpen && (
+                <div
+                    className="fixed inset-0 bg-black/50"
+                    onClick={() => setSidebarOpen(false)}
+                ></div>
+            )}
         </div>
-        </body>
     );
 }

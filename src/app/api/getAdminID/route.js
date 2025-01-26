@@ -49,17 +49,11 @@ export async function GET(request) {
                 return NextResponse.json({uid: userID }, { status: 200 });
             }
         }catch (error){
-            return NextResponse.json(
-                { error: 'Failed to fetch', details: error.message },
-                { status: 500 }
-            );
+            return NextResponse.json({uid: userID }, { status: 200 });
 
         }
 
     } catch (error) {
-        return NextResponse.json(
-            { error: 'Failed to fetch', details: error.message },
-            { status: 500 }
-        );
+        return NextResponse.json({uid: userID }, { status: 200 });
     }
 }
