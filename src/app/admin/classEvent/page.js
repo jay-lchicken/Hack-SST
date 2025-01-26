@@ -30,6 +30,24 @@ export default function Announcements() {
     const [emailOfStudent, setEmailOfStudent] = useState("");
     const [eventID, setEventID] = useState("");
     const [eventName, setEventName] = useState("")
+    const [isPopupVisible, setIsPopupVisible] = useState(false); // State for popup visibility
+    const [selectedAnnouncement, setSelectedAnnouncement] = useState(null); // State for selected announcement
+    const [isUpdating, setIsUpdating] = useState(false); // State for update status
+
+    const handlePopupSubmit = async (attended) => {
+        if (!selectedAnnouncement) return;
+
+        setIsUpdating(true); // Start updating
+        try {
+            await handleAttendanceChange(selectedAnnouncement.id, attended); // Call update function
+            setIsPopupVisible(false); // Close the popup on successful update
+        } catch (error) {
+            console.error("Error updating attendance:", error);
+            alert("Failed to update attendance. Please try again."); // Show error message
+        } finally {
+            setIsUpdating(false); // End updating
+        }
+    };
     useEffect(() => {
         // Get the classID from the URL
         const urlParams = new URLSearchParams(window.location.search);
@@ -140,7 +158,34 @@ export default function Announcements() {
         const data = await response.json();
         return data;
     };
+    const handleAttendanceChange = async (studentID, attended) => {
+        try {
+            const response = await fetch(`/api/updateStudentEvent?userID=${userID}&classID=${classID}&eventID=${eventID}&studentID=${studentID}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ attended }),
+            });
 
+            if (!response.ok) {
+                const errorData = await response.json();
+                console.error('Error updating attendance:', errorData.error);
+                return;
+            }
+            setAnnouncements((prevAnnouncements) =>
+                prevAnnouncements.map((announcement) =>
+                    announcement.id === studentID
+                        ? { ...announcement, attended } // Update the "attended" field locally
+                        : announcement
+                )
+            );
+
+            console.log('Attendance updated successfully!');
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
     if (loading) {
         return (
             <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
@@ -163,18 +208,43 @@ export default function Announcements() {
                 <div className="w-full max-w-2xl bg-white shadow-md rounded-lg p-4">
                     <div className="flex items-center justify-between mb-4">
                         <h1 className="text-2xl font-bold mb-4">Event: {eventName}</h1>
-
                     </div>
                     <ul>
                         {announcements.length > 0 ? (
                             announcements.map((announcement) => (
                                 <li
                                     key={announcement.id}
-                                    className="p-2 border-b border-gray-300 flex flex-col align-top justify-start"
+                                    className="p-4 border-b border-gray-300 flex flex-col align-top justify-start"
                                 >
-                                    <h1 className={"text-black text-4xl"}>{announcement.name}</h1>
-                                    <span className={"text-black"}>{announcement.email}</span>
+                                    <div className="flex flex-row items-center justify-between gap-4">
+                                        {/* Name and Email */}
+                                        <div className="flex flex-col justify-center">
+                                            <span className="text-black text-sm">{announcement.email}</span>
+                                            <h1 className="text-black text-4xl font-bold">{announcement.name}</h1>
+                                        </div>
 
+                                        {/* Status Capsule */}
+                                        <span
+                                            className={`px-4 py-2 rounded-full text-white text-sm font-semibold inline-block ${
+                                                announcement.attended
+                                                    ? "bg-green-500/50 border border-green-500 border-4 text-opacity-100"
+                                                    : "bg-red-500/50 border border-red-500 border-4 text-opacity-100"
+                                            }`}
+                                        >
+    {announcement.attended ? "Attended" : "Not Attended"}
+  </span>
+                                    </div>
+
+
+                                    <button
+                                        className="mt-2 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+                                        onClick={() => {
+                                            setSelectedAnnouncement(announcement); // Set the selected announcement
+                                            setIsPopupVisible(true); // Show the popup
+                                        }}
+                                    >
+                                        Change Status
+                                    </button>
                                 </li>
                             ))
                         ) : (
@@ -186,6 +256,39 @@ export default function Announcements() {
                 <p className="text-black">You are not authorized to view this page.</p>
             )}
 
+            {/* Popup */}
+            {isPopupVisible && selectedAnnouncement && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                    <div className="bg-white p-6 rounded-lg shadow-lg w-96">
+                        <h2 className="text-xl font-bold mb-4 text-black">
+                            Change Status for {selectedAnnouncement.name}
+                        </h2>
+                        <div className="flex flex-col gap-4">
+                            <button
+                                className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600"
+                                onClick={() => handlePopupSubmit(true)} // Submit as "Attended: Yes"
+                                disabled={isUpdating}
+                            >
+                                {isUpdating ? "Updating..." : "Mark as Attended"}
+                            </button>
+                            <button
+                                className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
+                                onClick={() => handlePopupSubmit(false)} // Submit as "Attended: No"
+                                disabled={isUpdating}
+                            >
+                                {isUpdating ? "Updating..." : "Mark as Not Attended"}
+                            </button>
+                            <button
+                                className="bg-gray-300 px-4 py-2 rounded-md hover:bg-gray-400"
+                                onClick={() => setIsPopupVisible(false)} // Close popup without saving
+                                disabled={isUpdating}
+                            >
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

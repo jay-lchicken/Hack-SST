@@ -4,18 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4b79a46b-3030-48a9-a32d-0e0678d17c27" name="Changes" comment="Added animations">
-      <change afterPath="$PROJECT_DIR$/src/app/admin/classEvent/page.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/admin/classEvents/page.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/api/addEvent/route.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/api/getClassEvents/route.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/api/getEventStudents/route.js" afterDir="false" />
+    <list default="true" id="4b79a46b-3030-48a9-a32d-0e0678d17c27" name="Changes" comment="Added support for Events">
+      <change afterPath="$PROJECT_DIR$/src/app/api/updateStudentEvent/route.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/admin/class/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/admin/class/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/admin/classStudents/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/admin/classStudents/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/admin/menu/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/admin/menu/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/student/class/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/student/class/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/student/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/student/page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/admin/classEvent/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/admin/classEvent/page.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +88,7 @@
       <workItem from="1737787336874" duration="3068000" />
       <workItem from="1737796588304" duration="3105000" />
       <workItem from="1737809217117" duration="33000" />
-      <workItem from="1737867713024" duration="4835000" />
+      <workItem from="1737867713024" duration="6714000" />
     </task>
     <task id="LOCAL-00001" summary="Creation">
       <option name="closed" value="true" />
@@ -210,7 +202,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737799610032</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Added support for Events">
+      <option name="closed" value="true" />
+      <created>1737872839206</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1737872839206</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -243,6 +243,7 @@
     <MESSAGE value="Trying Analytics Tracking" />
     <MESSAGE value="Chenged Favicon Test 1" />
     <MESSAGE value="Added Account Syncing feature" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Account Syncing feature" />
+    <MESSAGE value="Added support for Events" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added support for Events" />
   </component>
 </project>
