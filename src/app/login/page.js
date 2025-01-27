@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import { signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
+import {useRouter} from "next/navigation";
+
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBUMv3D8Zv-o8vx76U3j9vkhC3vkbc_u1Y',
@@ -17,6 +19,7 @@ const firebaseConfig = {
 let auth; // Define `auth` outside of the component to make it globally accessible.
 
 export default function Home() {
+    const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -36,9 +39,9 @@ export default function Home() {
         // Call the API to check admin status
         const isAdmin = await checkAdminStatus(currentUser.uid);
         if (isAdmin) {
-          window.location.href = '/admin/menu';
+          router.push('/admin/menu');
         } else {
-          window.location.href = '/student';
+          router.push('/student');
         }
       } else {
         console.log('No user is signed in.');
@@ -61,9 +64,9 @@ export default function Home() {
       const isAdmin = await checkAdminStatus(userCredential.user.uid);
 
       if (isAdmin) {
-        window.location.href = '/admin/menu';
+        router.push('/admin/menu');
       } else {
-        window.location.href = '/student';
+        router.push('/student');
       }
     } catch (err) {
       setError('Error logging you in'); // Display the error message

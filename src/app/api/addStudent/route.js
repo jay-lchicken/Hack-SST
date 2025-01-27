@@ -77,9 +77,9 @@ export async function POST(request) {
 
         return NextResponse.json({ success: true, message: 'Announcement added successfully' }, { status: 200 });
     } catch (error) {
-        console.error('Error adding announcement:', error.message);
+        console.error('Error adding student:', error.message);
         return NextResponse.json(
-            { error: 'Failed to add Announcement', details: error.message },
+            { error: 'Failed to add Student', details: error.message },
             { status: 500 }
         );
     }

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import {useRouter} from "next/navigation";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBUMv3D8Zv-o8vx76U3j9vkhC3vkbc_u1Y",
@@ -17,6 +18,8 @@ const firebaseConfig = {
 let auth;
 
 export default function Home() {
+    const router = useRouter();
+
     const [isAdmin, setIsAdmin] = useState(false);
     const [classes, setClasses] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -95,7 +98,7 @@ export default function Home() {
                             <span className="text-white">{cls.name}</span>
                             <button
                                 className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-white hover:text-red-500"
-                                onClick={() => (window.location.href = `../student/class?classID=${cls.id}`)}
+                                onClick={() => router.push(`../student/class?classID=${cls.id}`)}
                             >
                                 View
                             </button>
@@ -107,36 +110,7 @@ export default function Home() {
             </ul>
         </div>
 
-        {showPopup && (
-            <div className="fixed inset-0 bg-neutral-900 bg-opacity-75 flex items-center justify-center">
-                <div className="bg-neutral-800 p-6 rounded-lg shadow-lg w-96">
-                    <h2 className="text-xl font-bold text-white mb-6">Add Class</h2>
-                    {popupError && <p className="text-red-500 text-sm mb-4">{popupError}</p>}
 
-                    <input
-                        type="text"
-                        placeholder="Class Name"
-                        value={className}
-                        onChange={(e) => setClassName(e.target.value)}
-                        className="w-full h-10 bg-neutral-700 text-red-500 rounded-lg px-4 mb-6 focus:outline-none focus:ring-2 focus:ring-red-500"
-                    />
-                    <div className="flex justify-end">
-                        <button
-                            className="bg-red-500 text-white px-4 py-2 rounded-lg mr-2 hover:bg-white hover:text-red-500"
-                            onClick={handleAddClass}
-                        >
-                            {isSubmitting ? "Adding..." : "Add"}
-                        </button>
-                        <button
-                            className="bg-neutral-600 px-4 py-2 rounded-lg hover:bg-neutral-700 text-white"
-                            onClick={() => setShowPopup(false)}
-                        >
-                            Cancel
-                        </button>
-                    </div>
-                </div>
-            </div>
-        )}
         </body>
     );
 }

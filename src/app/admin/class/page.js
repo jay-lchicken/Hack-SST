@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-
+import { useRouter } from "next/navigation";
 const firebaseConfig = {
     apiKey: "AIzaSyBUMv3D8Zv-o8vx76U3j9vkhC3vkbc_u1Y",
     authDomain: "hackatsst-52e39.firebaseapp.com",
@@ -17,6 +17,7 @@ const firebaseConfig = {
 let auth;
 
 export default function Announcements() {
+    const router = useRouter();
     const [isAdmin, setIsAdmin] = useState(false);
     const [announcements, setAnnouncements] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -63,7 +64,7 @@ export default function Announcements() {
                 }
             } else {
                 // Redirect to login if no user is logged in
-                window.location.href = "/login";
+                router.push("/login");
             }
         });
 
@@ -168,7 +169,7 @@ export default function Announcements() {
                                 className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 mr-4"
                                 onClick={() => {
                                     if (classID) {
-                                        window.location.href = `/admin/classEvents?classID=${encodeURIComponent(classID)}`;
+                                        router.push(`/admin/classEvents?classID=${encodeURIComponent(classID)}`);
                                     } else {
                                         console.error("classID is not defined");
                                     }
@@ -181,7 +182,7 @@ export default function Announcements() {
                                 className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
                                 onClick={() => {
                                     if (classID) {
-                                        window.location.href = `/admin/classStudents?classID=${encodeURIComponent(classID)}`;
+                                        router.push(`/admin/classStudents?classID=${encodeURIComponent(classID)}`);
                                     } else {
                                         console.error("classID is not defined");
                                     }

@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-
+import { useRouter } from "next/navigation";
+import {router} from "next/client";
 const firebaseConfig = {
     apiKey: "AIzaSyBUMv3D8Zv-o8vx76U3j9vkhC3vkbc_u1Y",
     authDomain: "hackatsst-52e39.firebaseapp.com",
@@ -69,7 +70,7 @@ export default function Announcements() {
                 }
             } else {
                 // Redirect to login if no user is logged in
-                window.location.href = "/login";
+                router.push("/login");
             }
         });
 
@@ -196,7 +197,7 @@ export default function Announcements() {
 </span>
                                     <button
                                         className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
-                                        onClick={() => (window.location.href = `../admin/classEvent?classID=${classID}&eventID=${announcement.id}`)}
+                                        onClick={() => (router.push(`../admin/classEvent?classID=${classID}&eventID=${announcement.id}`))}
                                     >
                                         View
                                     </button>

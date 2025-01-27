@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-
+import { useRouter } from "next/navigation";
 const firebaseConfig = {
     apiKey: "AIzaSyBUMv3D8Zv-o8vx76U3j9vkhC3vkbc_u1Y",
     authDomain: "hackatsst-52e39.firebaseapp.com",
@@ -17,6 +17,7 @@ const firebaseConfig = {
 let auth;
 
 export default function Announcements() {
+    const router = useRouter();
     const [isAdmin, setIsAdmin] = useState(false);
     const [announcements, setAnnouncements] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -92,7 +93,7 @@ export default function Announcements() {
                 }
             } else {
                 // Redirect to login if no user is logged in
-                window.location.href = "/login";
+                router.push("/login");
             }
         });
 

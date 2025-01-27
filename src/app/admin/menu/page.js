@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import {useRouter} from "next/navigation";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBUMv3D8Zv-o8vx76U3j9vkhC3vkbc_u1Y",
@@ -17,6 +18,7 @@ const firebaseConfig = {
 let auth;
 
 export default function Home() {
+    const router = useRouter();
     const [isAdmin, setIsAdmin] = useState(false);
     const [classes, setClasses] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -59,7 +61,7 @@ export default function Home() {
                 }
             } else {
                 // Redirect to login if no user is logged in
-                window.location.href = "/login";
+                router.push("/login");
             }
         });
 
@@ -164,7 +166,7 @@ export default function Home() {
                                     <span className={"text-black"}>{cls.name}</span>
                                     <button
                                         className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
-                                        onClick={() => (window.location.href = `../admin/class?classID=${cls.id}`)}
+                                        onClick={() => (router.push(`../admin/class?classID=${cls.id}`))}
                                     >
                                         View
                                     </button>
