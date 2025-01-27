@@ -127,7 +127,13 @@ export default function Announcements() {
                 </div>
                 <ul>
                     {announcements.length > 0 ? (
-                        announcements.map((announcement) => (
+                        announcements
+                            .sort((a, b) => {
+                                const dateA = new Date(a.timestamp._seconds * 1000 + a.timestamp._nanoseconds / 1e6);
+                                const dateB = new Date(b.timestamp._seconds * 1000 + b.timestamp._nanoseconds / 1e6);
+                                return dateB - dateA; // Sort from latest to oldest
+                            })
+                            .map((announcement) => (
                             <li
                                 key={announcement.id}
                                 className="p-4 border-b border-neutral-700 flex flex-col justify-start"
@@ -186,7 +192,14 @@ export default function Announcements() {
                 </div>
                 <ul>
                     {attendance.length > 0 ? (
-                        attendance.map((attendee) => (
+
+                        attendance
+                            .sort((a, b) => {
+                                const dateA = new Date(Number(a.start)); // Convert "start" to a number and create a Date object
+                                const dateB = new Date(Number(b.start));
+                                return dateB - dateA; // Sort from latest to oldest
+                            })
+                            .map((attendee) => (
                             <li
                                 key={attendee.id}
                                 className="p-4 border-b border-neutral-600 flex flex-col justify-start"

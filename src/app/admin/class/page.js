@@ -194,7 +194,13 @@ export default function Announcements() {
                     </div>
                     <ul>
                         {announcements.length > 0 ? (
-                            announcements.map((announcement) => (
+                            announcements
+                                .sort((a, b) => {
+                                    const dateA = new Date(a.timestamp._seconds * 1000 + a.timestamp._nanoseconds / 1e6);
+                                    const dateB = new Date(b.timestamp._seconds * 1000 + b.timestamp._nanoseconds / 1e6);
+                                    return dateB - dateA; // Sort from latest to oldest
+                                })
+                                .map((announcement) => (
                                 <li
                                     key={announcement.id}
                                     className="p-2 border-b border-gray-300 flex flex-col align-top justify-start"
