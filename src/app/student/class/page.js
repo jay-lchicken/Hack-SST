@@ -114,7 +114,7 @@ export default function Announcements() {
                         className="text-white text-xl px-4 py-2 bg-red-500 rounded-lg hover:bg-red-600"
                         onClick={() => setSidebarOpen(true)}
                     >
-                        ☰ Attendance
+                        ☰ Events
                     </button>
                 </div>
                 <ul>
@@ -141,7 +141,7 @@ export default function Announcements() {
                 } transition-transform duration-300 z-50`}
             >
                 <div className="flex items-center justify-between mb-6">
-                    <h1 className="text-2xl font-bold text-white">Class Attendance</h1>
+                    <h1 className="text-2xl font-bold text-white">Class Events</h1>
                     <button
                         className="text-white text-xl px-4 py-2 bg-red-500 rounded-lg hover:bg-red-600"
                         onClick={() => setSidebarOpen(false)}
