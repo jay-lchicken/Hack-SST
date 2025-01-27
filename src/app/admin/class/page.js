@@ -4,6 +4,8 @@ import { onAuthStateChanged } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { useRouter } from "next/navigation";
+import HoverPopupLink from "@/app/hoverPopup";
+
 const firebaseConfig = {
     apiKey: "AIzaSyBUMv3D8Zv-o8vx76U3j9vkhC3vkbc_u1Y",
     authDomain: "hackatsst-52e39.firebaseapp.com",
@@ -135,7 +137,15 @@ export default function Announcements() {
         const data = await response.json();
         return data;
     };
-
+    const isValidUrl = urlString=> {
+        var urlPattern = new RegExp('^(https?:\\/\\/)?'+ // validate protocol
+            '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // validate domain name
+            '((\\d{1,3}\\.){3}\\d{1,3}))'+ // validate OR ip (v4) address
+            '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // validate port and path
+            '(\\?[;&a-z\\d%_.~+=-]*)?'+ // validate query string
+            '(\\#[-a-z\\d_]*)?$','i'); // validate fragment locator
+        return !!urlPattern.test(urlString);
+    }
     if (loading) {
         return (
             <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
@@ -202,15 +212,35 @@ export default function Announcements() {
                                     return dateB - dateA; // Sort from latest to oldest
                                 })
                                 .map((announcement) => (
-                                <li
-                                    key={announcement.id}
-                                    className="p-2 border-b border-gray-300 flex flex-col align-top justify-start"
-                                >
-                                    <h1 className={"text-black text-4xl"}>{announcement.title}</h1>
-                                    <span className={"text-black"}>{announcement.description}</span>
+                                    <li
+                                        key={announcement.id}
+                                        className="p-4 border-b border-neutral-700 flex flex-col justify-start"
+                                    >
+                                        <h1 className="text-black text-4xl mb-2">{announcement.title}</h1>
+                                        <h2 className="text-black">
+                                            {new Date(
+                                                announcement.timestamp._seconds * 1000 + announcement.timestamp._nanoseconds / 1e6
+                                            ).toLocaleString()}
+                                        </h2>
+                                        <span className="text-black">
+                        {announcement.description.split(" ").map((word, index) => {
+                            const isLink = word.includes(".") && !word.includes(" "); // Detect links
+                            const url = isLink && !word.startsWith("http") ? `http://${word}` : word;
 
-                                </li>
-                            ))
+                            return isValidUrl(word) ? (
+                                <span className="text-black" key={index}>
+                                    <HoverPopupLink url={url.endsWith(".") ? url.slice(0, -1) : url} />
+                                    {url.endsWith(".") ? ". " : " "}
+                                </span>
+                            ) : (
+                                <span className="text-black" key={index}>
+                                    {word + " "}
+                                </span>
+                            );
+                        })}
+                    </span>
+                                    </li>
+                                ))
                         ) : (
                             <p className="text-black">No announcements found.</p>
                         )}

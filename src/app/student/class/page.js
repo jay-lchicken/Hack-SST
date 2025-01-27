@@ -4,7 +4,8 @@ import { onAuthStateChanged } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import {useRouter} from "next/navigation";
-
+import hoverPopup from "@/app/hoverPopup";
+import HoverPopupLink from "@/app/hoverPopup";
 const firebaseConfig = {
     apiKey: "AIzaSyBUMv3D8Zv-o8vx76U3j9vkhC3vkbc_u1Y",
     authDomain: "hackatsst-52e39.firebaseapp.com",
@@ -141,7 +142,7 @@ export default function Announcements() {
                                 className="p-4 border-b border-neutral-700 flex flex-col justify-start"
                             >
                                 <h1 className="text-white text-4xl mb-2">{announcement.title}</h1>
-                                <h2>{Date(announcement.timestamp._seconds * 1000 + announcement.timestamp._nanoseconds / 1e6).toLocaleString()}</h2>
+                                <h2>{new Date(announcement.timestamp._seconds * 1000 + announcement.timestamp._nanoseconds / 1e6).toLocaleString()}</h2>
                                 <span>
                                     {announcement.description.split(' ').map((word, index) => {
                                         const isLink = word.includes('.') && !word.includes(' '); // Detect links
@@ -149,15 +150,16 @@ export default function Announcements() {
 
                                         return isValidUrl(word) ? (
                                             <span>
-        <a
-            key={index}
-            href={url.endsWith('.') ? url.slice(0, -1) : url} // Check if url ends with a dot and remove it
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ color: 'green', textDecoration: 'underline' }} // Styling only for the link
-        >
-            {url.endsWith('.') ? url.slice(0, -1) : url}
-        </a>
+        {/*<a*/}
+        {/*    key={index}*/}
+        {/*    href={url.endsWith('.') ? url.slice(0, -1) : url} // Check if url ends with a dot and remove it*/}
+        {/*    target="_blank"*/}
+        {/*    rel="noopener noreferrer"*/}
+        {/*    style={{ color: 'green', textDecoration: 'underline' }} // Styling only for the link*/}
+        {/*>*/}
+        {/*    {url.endsWith('.') ? url.slice(0, -1) : url}*/}
+        {/*</a>*/}
+                                                <HoverPopupLink url={url.endsWith('.') ? url.slice(0, -1) : url}></HoverPopupLink>
                                                 {url.endsWith('.') ? '. ' : ' '}
     </span>
 

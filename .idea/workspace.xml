@@ -4,17 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4b79a46b-3030-48a9-a32d-0e0678d17c27" name="Changes" comment="Added Time">
+    <list default="true" id="4b79a46b-3030-48a9-a32d-0e0678d17c27" name="Changes" comment="Changed window.location.href to Router">
+      <change afterPath="$PROJECT_DIR$/src/app/hoverPopup.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/admin/class/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/admin/class/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/admin/classEvent/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/admin/classEvent/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/admin/classEvents/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/admin/classEvents/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/admin/classStudents/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/admin/classStudents/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/admin/menu/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/admin/menu/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/api/addStudent/route.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/addStudent/route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/login/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/login/page.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/student/class/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/student/class/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/student/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/student/page.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +94,7 @@
       <workItem from="1737867713024" duration="16837000" />
       <workItem from="1737952996689" duration="869000" />
       <workItem from="1737956951444" duration="1119000" />
-      <workItem from="1737965341648" duration="8336000" />
+      <workItem from="1737965341648" duration="11071000" />
     </task>
     <task id="LOCAL-00001" summary="Creation">
       <option name="closed" value="true" />
@@ -316,7 +312,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737977266647</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Changed window.location.href to Router">
+      <option name="closed" value="true" />
+      <created>1737978547138</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1737978547138</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -334,7 +338,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Creation" />
     <MESSAGE value="Added announcement feature" />
     <MESSAGE value="Fixed Image" />
     <MESSAGE value="Fixed UI" />
@@ -359,6 +362,7 @@
     <MESSAGE value="Added Sorting" />
     <MESSAGE value="Fixed links ending with a fullstop" />
     <MESSAGE value="Added Time" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Time" />
+    <MESSAGE value="Changed window.location.href to Router" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed window.location.href to Router" />
   </component>
 </project>
