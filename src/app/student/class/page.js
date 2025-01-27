@@ -125,7 +125,29 @@ export default function Announcements() {
                                 className="p-4 border-b border-neutral-700 flex flex-col justify-start"
                             >
                                 <h1 className="text-white text-4xl mb-2">{announcement.title}</h1>
-                                <span className="text-white">{announcement.description}</span>
+                                <span>
+                                    {announcement.description.split(' ').map((word, index) => {
+                                        const isLink = word.includes('.') && !word.includes(' '); // Detect links
+                                        const url = isLink && !word.startsWith('http') ? `http://${word}` : word;
+
+                                        return isLink ? (
+                                                <span>
+                                                    <a
+                                                        key={index}
+                                                        href={url}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        style={{ color: 'green', textDecoration: 'underline' }}
+                                                    >
+                                                    {word}
+                                                </a>
+                                                <span> </span>
+                                                </span>
+                                        ) : (
+                                            word + ' '
+                                        );
+                                    })}
+                                </span>
                             </li>
                         ))
                     ) : (
