@@ -87,7 +87,15 @@ export default function Announcements() {
         const data = await response.json();
         return data;
     };
-
+    const isValidUrl = urlString=> {
+        var urlPattern = new RegExp('^(https?:\\/\\/)?'+ // validate protocol
+            '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // validate domain name
+            '((\\d{1,3}\\.){3}\\d{1,3}))'+ // validate OR ip (v4) address
+            '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // validate port and path
+            '(\\?[;&a-z\\d%_.~+=-]*)?'+ // validate query string
+            '(\\#[-a-z\\d_]*)?$','i'); // validate fragment locator
+        return !!urlPattern.test(urlString);
+    }
     if (loading) {
         return (
             <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
@@ -130,7 +138,7 @@ export default function Announcements() {
                                         const isLink = word.includes('.') && !word.includes(' '); // Detect links
                                         const url = isLink && !word.startsWith('http') ? `http://${word}` : word;
 
-                                        return isLink ? (
+                                        return isValidUrl(word) ? (
                                                 <span>
                                                     <a
                                                         key={index}
