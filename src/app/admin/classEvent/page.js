@@ -33,6 +33,8 @@ export default function Announcements() {
     const [isPopupVisible, setIsPopupVisible] = useState(false); // State for popup visibility
     const [selectedAnnouncement, setSelectedAnnouncement] = useState(null); // State for selected announcement
     const [isUpdating, setIsUpdating] = useState(false); // State for update status
+    const [trueTitle, setTrueTitle] = useState(false); // State for update status
+    const [falseTitle, setFalseTitle] = useState(false); // State for update status
 
     const handlePopupSubmit = async (attended) => {
         if (!selectedAnnouncement) return;
@@ -77,6 +79,10 @@ export default function Announcements() {
                         const data = await fetchAnnouncements(classIDS, adminID.uid, eventIDS);
                         setAnnouncements(data.data || []);
                         setEventName(data.eventData.name)
+                        setFalseTitle(data.eventData.falseTitle)
+                        setTrueTitle(data.eventData.trueTitle)
+
+
                     }
                 } catch (err) {
                     console.error("Error fetching announcements:", err.message);
@@ -231,7 +237,7 @@ export default function Announcements() {
                                                     : "bg-red-500/50 border border-red-500 border-4 text-opacity-100"
                                             }`}
                                         >
-    {announcement.attended ? "True" : "False"}
+    {announcement.attended ? trueTitle : falseTitle}
   </span>
                                     </div>
 
@@ -269,14 +275,14 @@ export default function Announcements() {
                                 onClick={() => handlePopupSubmit(true)} // Submit as "Attended: Yes"
                                 disabled={isUpdating}
                             >
-                                {isUpdating ? "Updating..." : "Mark as True"}
+                                {isUpdating ? "Updating..." : `Mark as ${trueTitle}`}
                             </button>
                             <button
                                 className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
                                 onClick={() => handlePopupSubmit(false)} // Submit as "Attended: No"
                                 disabled={isUpdating}
                             >
-                                {isUpdating ? "Updating..." : "Mark as False"}
+                                {isUpdating ? "Updating..." :  `Mark as ${falseTitle}`}
                             </button>
                             <button
                                 className="bg-gray-300 px-4 py-2 rounded-md hover:bg-gray-400"

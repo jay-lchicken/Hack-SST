@@ -170,7 +170,7 @@ export default function Announcements() {
                                             : 'bg-red-500/50 border border-red-500'
                                     }`}
                                 >
-            {attendee.attended ? 'Attended' : 'Not Attended'}
+            {attendee.attended ? attendee.trueTitle : attendee.falseTitle}
           </span>
                             </li>
                         ))

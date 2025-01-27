@@ -81,7 +81,9 @@ export async function GET(request) {
                     name: announcementData.name || "No name provided", // Gracefully handle missing name
                     attended: attended, // Use the fetched attended status
                     start: announcementData.start,
-                    end: announcementData.end
+                    end: announcementData.end,
+                    trueTitle: announcementData.trueTitle,
+                    falseTitle: announcementData.falseTitle
                 });
             } catch (error) {
                 console.error(`Error fetching student data for eventID: ${doc.id}`, error);
