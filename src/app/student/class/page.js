@@ -145,26 +145,22 @@ export default function Announcements() {
                                         const url = isLink && !word.startsWith('http') ? `http://${word}` : word;
 
                                         return isValidUrl(word) ? (
-                                            // <span>
-                                            //
-                                            // </span>
-                                                <span>
-                                                    <a
-                                                        key={index}
-                                                        href={url}
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        style={{ color: 'green', textDecoration: 'underline' }}
-                                                    >
-                                                    {word}
-                                                </a>
-                                                    <span> </span>
-                                                </span>
-
+                                            <span>
+        <a
+            key={index}
+            href={url.endsWith('.') ? url.slice(0, -1) : url} // Check if url ends with a dot and remove it
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: 'green', textDecoration: 'underline' }} // Styling only for the link
+        >
+            {url.endsWith('.') ? url.slice(0, -1) : url}
+        </a>
+                                                {url.endsWith('.') ? '. ' : ' '}
+    </span>
 
                                         ) : (
                                             word + ' '
-                                        )
+                                        );
                                     })}
                                 </span>
                             </li>
