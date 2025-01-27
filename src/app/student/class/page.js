@@ -115,7 +115,7 @@ export default function Announcements() {
     return (
         <div className="bg-neutral-900 flex flex-col items-center justify-center min-h-screen">
             {/* Main Content */}
-            <div className="w-full max-w-2xl bg-neutral-800 shadow-md rounded-lg p-6">
+            <div className="w-full  max-w-2xl md:max-w-6xl bg-neutral-800 shadow-md rounded-lg p-6">
                 <div className="flex items-center justify-between mb-6">
                     <h1 className="text-2xl font-bold text-white">Class Announcements</h1>
                     <button
@@ -139,18 +139,22 @@ export default function Announcements() {
                                         const url = isLink && !word.startsWith('http') ? `http://${word}` : word;
 
                                         return isValidUrl(word) ? (
-                                            <span>
-                                                <a
-                                                    key={index}
-                                                    href={url}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    style={{ color: 'green', textDecoration: 'underline' }}
-                                                >
+                                            // <span>
+                                            //
+                                            // </span>
+                                                <span>
+                                                    <a
+                                                        key={index}
+                                                        href={url}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        style={{ color: 'green', textDecoration: 'underline' }}
+                                                    >
                                                     {word}
                                                 </a>
-                                                <span> </span>
-                                            </span>
+                                                    <span> </span>
+                                                </span>
+
 
                                         ) : (
                                             word + ' '
