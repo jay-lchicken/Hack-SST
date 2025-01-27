@@ -139,21 +139,22 @@ export default function Announcements() {
                                         const url = isLink && !word.startsWith('http') ? `http://${word}` : word;
 
                                         return isValidUrl(word) ? (
-                                                <span>
-                                                    <a
-                                                        key={index}
-                                                        href={url}
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        style={{ color: 'green', textDecoration: 'underline' }}
-                                                    >
+                                            <span>
+                                                <a
+                                                    key={index}
+                                                    href={url}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    style={{ color: 'green', textDecoration: 'underline' }}
+                                                >
                                                     {word}
                                                 </a>
                                                 <span> </span>
-                                                </span>
+                                            </span>
+
                                         ) : (
                                             word + ' '
-                                        );
+                                        )
                                     })}
                                 </span>
                             </li>
