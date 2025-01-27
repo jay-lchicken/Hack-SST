@@ -139,6 +139,7 @@ export default function Announcements() {
                                 className="p-4 border-b border-neutral-700 flex flex-col justify-start"
                             >
                                 <h1 className="text-white text-4xl mb-2">{announcement.title}</h1>
+                                <h2>{Date(announcement.timestamp._seconds * 1000 + announcement.timestamp._nanoseconds / 1e6).toLocaleString()}</h2>
                                 <span>
                                     {announcement.description.split(' ').map((word, index) => {
                                         const isLink = word.includes('.') && !word.includes(' '); // Detect links
