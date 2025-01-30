@@ -18,6 +18,7 @@ const firebaseConfig = {
 let auth;
 
 export default function Announcements() {
+    const router = useRouter();
     const [isAdmin, setIsAdmin] = useState(false);
     const [announcements, setAnnouncements] = useState([]);
     const [loading, setLoading] = useState(true);
