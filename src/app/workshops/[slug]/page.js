@@ -55,7 +55,6 @@ export default function WorkshopPage() {
             </div>
 
             {/* Debugging: See raw HTML output */}
-             <pre>{content}</pre>
         </div>
     );
 }
