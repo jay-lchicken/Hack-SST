@@ -88,7 +88,7 @@ export default function Home() {
                 target="_blank"
                 class="text-xl font-normal text-red-500 underline hover:decoration-wavy cursor-pointer px-1"
               >
-                Jayden
+                Hong Yu
               </a>
             </span>
             asked
