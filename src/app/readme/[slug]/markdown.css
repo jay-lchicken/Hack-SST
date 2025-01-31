@@ -1,0 +1,240 @@
+.markdown-content {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    word-break: break-word;
+    color: #ffffff;
+    background-color: #17171d;
+
+}
+.markdown{
+    width: 80%;
+}
+img{
+    max-width: 600px;
+    max-height: 600px;
+}
+/* Headings */
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3 {
+    color: #ec3750;  /* Hack Club's coral/salmon color */
+    margin-top: 1.5rem;
+    font-weight: 700;
+}
+
+/* Links */
+.markdown-content p a {
+    color: #ec3750;
+    text-decoration: underline;
+    transition: opacity 0.125s ease-in-out;
+}
+
+.markdown-content h2{
+    font-size: 50px;
+}
+
+.markdown-content a:hover {
+    opacity: 0.8;
+    text-decoration-style: wavy !important; /* ✅ Apply wavy underline */
+}
+
+/* Code Blocks */
+.markdown-content pre {
+    background-color: #252429;
+    color: #ffffff;
+    padding: 1rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 1rem 0;
+}
+
+.markdown-content code {
+    background-color: #252429;
+    color: #ec3750;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: "SF Mono", "Roboto Mono", Menlo, monospace;
+    font-size: 0.875em;
+}
+
+/* Tables */
+.markdown-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+}
+
+.markdown-content th,
+.markdown-content td {
+    border: 1px solid #333;
+    padding: 8px;
+    text-align: left;
+}
+
+.markdown-content th {
+    background-color: #252429;
+    color: #ec3750;
+}
+
+.markdown-content tr:nth-child(even) {
+    background-color: #1d1d21;
+}
+
+/* Images */
+.markdown-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+/* Lists */
+.markdown-content ul,
+.markdown-content ol {
+    padding-left: 1.5rem;
+    color: #ffffff;
+}
+
+/* Blockquotes */
+.markdown-content blockquote {
+    border-left: 4px solid #ec3750;
+    padding-left: 1rem;
+    color: #8492a6;
+    font-style: italic;
+    margin: 1rem 0;
+}
+
+/* Horizontal Rule */
+.markdown-content hr {
+    border: none;
+    height: 1px;
+    background: #333;
+    margin: 2rem 0;
+}
+
+/* Buttons (if needed) */
+.markdown-content .button {
+    background-color: #ec3750;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 999px;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bold;
+    transition: opacity 0.125s ease-in-out;
+}
+
+.markdown-content .button:hover {
+    opacity: 0.8;
+}
+.markdown-content {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    word-break: break-word;
+    color: #ffffff;
+    background-color: #17171d;
+}
+
+/* Increase spacing between paragraphs */
+.markdown-content p {
+    margin: 1.5rem 0;  /* Increased from default */
+}
+
+/* Increase spacing for headings */
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3 {
+    color: #ec3750;
+    margin-top: 3rem;    /* Increased spacing above */
+    margin-bottom: 1.5rem;  /* Added spacing below */
+    font-weight: 700;
+}
+
+/* First heading shouldn't have as much top margin */
+.markdown-content h1:first-child,
+.markdown-content h2:first-child,
+.markdown-content h3:first-child {
+    margin-top: 1rem;
+}
+
+/* Add spacing after lists */
+.markdown-content ul,
+.markdown-content ol {
+    padding-left: 1.5rem;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+}
+
+/* Add spacing after code blocks */
+.markdown-content pre {
+    margin: 2rem 0;  /* Increased from 1rem */
+}
+
+/* Add spacing after blockquotes */
+.markdown-content blockquote {
+    margin: 2rem 0;  /* Increased from 1rem */
+}
+
+/* Increase spacing after horizontal rules */
+.markdown-content hr {
+    margin: 3rem 0;  /* Increased from 2rem */
+}
+
+/* Add spacing after tables */
+.markdown-content table {
+    margin: 2rem 0;  /* Increased from 1rem */
+}
+
+/* List styling */
+.markdown-content ul,
+.markdown-content ol {
+    padding-left: 1.5rem;
+    color: #ffffff;
+    margin: 2rem 0;
+}
+
+/* Bullet points */
+.markdown-content ul {
+    list-style: none;
+}
+
+.markdown-content ul li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin: 0.75rem 0;
+}
+
+.markdown-content ul li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.75rem;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    background-color: #ec3750;  /* Hack Club's coral color */
+    border-radius: 50%;
+}
+
+/* Nested lists */
+.markdown-content ul ul,
+.markdown-content ol ol,
+.markdown-content ul ol,
+.markdown-content ol ul {
+    margin: 0.75rem 0;
+    padding-left: 1.5rem;
+}
+
+/* Numbered lists */
+.markdown-content ol {
+    list-style-type: decimal;
+    margin-left: 0.5rem;
+}
+
+.markdown-content ol li {
+    margin: 0.75rem 0;
+    padding-left: 0.5rem;
+}
+
