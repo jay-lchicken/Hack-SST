@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4b79a46b-3030-48a9-a32d-0e0678d17c27" name="Changes" comment="Fixed Events Button not working">
-      <change afterPath="$PROJECT_DIR$/src/app/workshops/[slug]/markdown.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/workshops/[slug]/page.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/workshop.js" afterDir="false" />
+    <list default="true" id="4b79a46b-3030-48a9-a32d-0e0678d17c27" name="Changes" comment="Fixed Bug">
+      <change afterPath="$PROJECT_DIR$/src/app/api/formChangeStatus/route.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/admin/classEvent/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/admin/classEvent/page.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +41,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/jay_lchicken/WebstormProjects/hackatsst/src/components",
+    "last_opened_file_path": "/Users/jay_lchicken/WebstormProjects/hackatsst/src/app/api/formChangeStatus",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -57,11 +54,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/components" />
+      <recent name="$PROJECT_DIR$/src/app/api/formChangeStatus" />
       <recent name="$PROJECT_DIR$/src/app/api" />
+      <recent name="$PROJECT_DIR$/src/components" />
       <recent name="$PROJECT_DIR$/src/app/admin" />
       <recent name="$PROJECT_DIR$/public" />
-      <recent name="$PROJECT_DIR$/src/app/student/class" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/app" />
@@ -100,7 +97,9 @@
       <workItem from="1737965341648" duration="11089000" />
       <workItem from="1738139690238" duration="276000" />
       <workItem from="1738201094890" duration="821000" />
-      <workItem from="1738218516387" duration="5863000" />
+      <workItem from="1738218516387" duration="6331000" />
+      <workItem from="1738293635405" duration="20000" />
+      <workItem from="1738301104201" duration="2174000" />
     </task>
     <task id="LOCAL-00001" summary="Creation">
       <option name="closed" value="true" />
@@ -342,7 +341,23 @@
       <option name="project" value="LOCAL" />
       <updated>1738201187975</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Added Workshops">
+      <option name="closed" value="true" />
+      <created>1738224725578</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1738224725578</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Fixed Bug">
+      <option name="closed" value="true" />
+      <created>1738224805068</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1738224805068</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -360,8 +375,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed UI" />
-    <MESSAGE value="Adjusted Green Login Text" />
     <MESSAGE value="Edited the description and title" />
     <MESSAGE value="Added Students View" />
     <MESSAGE value="Added view of students" />
@@ -385,6 +398,8 @@
     <MESSAGE value="Changed window.location.href to Router" />
     <MESSAGE value="Added Hover" />
     <MESSAGE value="Fixed Events Button not working" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed Events Button not working" />
+    <MESSAGE value="Added Workshops" />
+    <MESSAGE value="Fixed Bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed Bug" />
   </component>
 </project>

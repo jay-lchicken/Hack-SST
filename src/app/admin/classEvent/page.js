@@ -36,7 +36,15 @@ export default function Announcements() {
     const [isUpdating, setIsUpdating] = useState(false); // State for update status
     const [trueTitle, setTrueTitle] = useState(false); // State for update status
     const [falseTitle, setFalseTitle] = useState(false); // State for update status
+    const [showAPILink, setShowAPILink] = useState(false);
+    const [copied, setCopied] = useState(false);
 
+    const handleCopy = () => {
+        navigator.clipboard.writeText(`https://hackatsst.hackclub.com/api/formChangeStatus?adminID=${userID}&classID=${classID}&email=[SET IN FORM]&eventID=${eventID}`).then(() => {
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        });
+    };
     const handlePopupSubmit = async (attended) => {
         if (!selectedAnnouncement) return;
 
@@ -215,6 +223,12 @@ export default function Announcements() {
                 <div className="w-full max-w-2xl bg-white shadow-md rounded-lg p-4">
                     <div className="flex items-center justify-between mb-4">
                         <h1 className="text-2xl font-bold mb-4">Event: {eventName}</h1>
+                        <button
+                            className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
+                            onClick={() => setShowAPILink(true)}
+                        >
+                            View API
+                        </button>
                     </div>
                     <ul>
                         {announcements.length > 0 ? (
@@ -292,6 +306,35 @@ export default function Announcements() {
                             >
                                 Cancel
                             </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+            {showAPILink && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                    <div className="bg-white p-6 rounded-lg shadow-lg w-96">
+                        <h2 className="text-xl font-bold mb-4 text-black">
+                            API Link and JSON
+                        </h2>
+                        <div className="flex flex-col gap-4">
+                            {/* Title */}
+                            <div className="text-black">POST JSON</div>
+
+                            {/* URL Block */}
+                            <div className="flex flex-col gap-4 text-blue-500 break-words overflow-wrap break-word whitespace-normal" onClick={handleCopy} title={"Click to copy"}>
+                                https://hackatsst.hackclub.com/api/formChangeStatus?adminID={userID}&classID={classID}&email=[SET IN FORM]&eventID={eventID}
+                            </div>
+                            {copied && (
+                                <div className="text-green-500 text-sm">Copied!</div>
+                            )}
+
+                            {/* JSON Block */}
+                            <div className="flex flex-col gap-2">
+                                <div className="text-black">JSON</div>
+                                <pre className="text-black break-words overflow-wrap break-word whitespace-pre-wrap bg-gray-100 p-2 rounded-md">
+            {JSON.stringify({ attended: false }, null, 4)}
+        </pre>
+                            </div>
                         </div>
                     </div>
                 </div>
