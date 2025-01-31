@@ -116,9 +116,9 @@ export default function Announcements() {
     }
 
     return (
-        <div className="bg-neutral-900 flex flex-col items-center justify-center min-h-screen">
+        <div className="bg-neutral-900 flex flex-col items-center justify-center min-h-screen ">
             {/* Main Content */}
-            <div className="w-full  max-w-2xl md:max-w-6xl bg-neutral-800 shadow-md rounded-lg p-6">
+            <div className="w-full  max-w-2xl md:max-w-6xl bg-neutral-800 shadow-md rounded-lg p-6 max-h-[70%] h-[70vh]  ">
                 <div className="flex items-center justify-between mb-6">
                     <h1 className="text-2xl font-bold text-white">Class Announcements</h1>
                     <button
@@ -128,7 +128,7 @@ export default function Announcements() {
                         ☰ Events
                     </button>
                 </div>
-                <ul>
+                <ul className={"overflow-auto max-h-[80%] "}>
                     {announcements.length > 0 ? (
                         announcements
                             .sort((a, b) => {
@@ -139,7 +139,7 @@ export default function Announcements() {
                             .map((announcement) => (
                             <li
                                 key={announcement.id}
-                                className="p-4 border-b border-neutral-700 flex flex-col justify-start"
+                                className="p-4 border-b border-neutral-700  flex flex-col justify-start flex-wrap "
                             >
                                 <h1 className="text-white text-4xl mb-2">{announcement.title}</h1>
                                 <h2>{new Date(announcement.timestamp._seconds * 1000 + announcement.timestamp._nanoseconds / 1e6).toLocaleString()}</h2>
@@ -191,7 +191,7 @@ export default function Announcements() {
                         ✕ Close
                     </button>
                 </div>
-                <ul>
+                <ul className={"overflow-auto max-h-[90%]"}>
                     {attendance.length > 0 ? (
 
                         attendance
