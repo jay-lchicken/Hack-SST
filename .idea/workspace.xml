@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4b79a46b-3030-48a9-a32d-0e0678d17c27" name="Changes" comment="Added form api" />
+    <list default="true" id="4b79a46b-3030-48a9-a32d-0e0678d17c27" name="Changes" comment="Added Debugging">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -95,7 +97,7 @@
       <workItem from="1738201094890" duration="821000" />
       <workItem from="1738218516387" duration="6331000" />
       <workItem from="1738293635405" duration="20000" />
-      <workItem from="1738301104201" duration="2479000" />
+      <workItem from="1738301104201" duration="3830000" />
     </task>
     <task id="LOCAL-00001" summary="Creation">
       <option name="closed" value="true" />
@@ -361,7 +363,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738303285934</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Added Debugging">
+      <option name="closed" value="true" />
+      <created>1738303788357</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1738303788357</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -379,7 +389,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added Students View" />
     <MESSAGE value="Added view of students" />
     <MESSAGE value="Added Tracking" />
     <MESSAGE value="Added Student View" />
@@ -404,6 +413,7 @@
     <MESSAGE value="Added Workshops" />
     <MESSAGE value="Fixed Bug" />
     <MESSAGE value="Added form api" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added form api" />
+    <MESSAGE value="Added Debugging" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Debugging" />
   </component>
 </project>

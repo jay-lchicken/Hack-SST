@@ -47,7 +47,11 @@ export default function Announcements() {
     };
     const handlePopupSubmit = async (attended) => {
         if (!selectedAnnouncement) return;
-
+        if (attended === true){
+            attended = "true";
+        }else{
+            attended = "false";
+        }
         setIsUpdating(true); // Start updating
         try {
             await handleAttendanceChange(selectedAnnouncement.id, attended); // Call update function

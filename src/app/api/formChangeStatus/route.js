@@ -31,7 +31,7 @@ export async function POST(request) {
         const adminID = searchParams.get('adminID');
         const userID = user.uid;
         const body = await request.json(); // Parse the JSON body
-        const { attended } = body; // Extract the 'attended' value
+        var { attended } = body; // Extract the 'attended' value
 
         if (!email || !classID || !eventID || attended === undefined) {
             return NextResponse.json(
@@ -47,7 +47,11 @@ export async function POST(request) {
         }
 
         const db = admin.firestore();
-
+        if (attended == 'true'){
+            attended = true;
+        }else{
+            attended = false;
+        }
         // Reference to the student document
         const studentRef = db
             .collection('users')
