@@ -68,8 +68,20 @@ export default function Home() {
 
     if (loading) {
         return (
-            <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-                <p className="text-black">Loading...</p>
+            <div className="h-screen w-screen bg-black flex flex-col items-center justify-center gap-8 ">
+                {/* Logo */}
+                <img
+                    className="w-[30%] max-w-xs sm:max-w-sm h-auto "
+                    src="https://assets.hackclub.com/flag-standalone.svg"
+                    alt="Hack Club Flag"
+                />
+
+                {/* Loading Animation */}
+                <div id="load" className="flex space-x-2 text-4xl">
+                    {["G", "N", "I", "D", "A", "O", "L"].map((letter, index) => (
+                        <div key={index}>{letter}</div>
+                    ))}
+                </div>
             </div>
         );
     }
