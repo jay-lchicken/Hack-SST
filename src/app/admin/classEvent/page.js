@@ -355,16 +355,21 @@ export default function Announcements() {
 
                             {/* URL Parameters */}
                             <div className="text-black">URL Parameters</div>
-                            {[
-                                { email: "[EMAIL FIELD]" },
-                                { eventID: eventID },
-                                { classID: classID },
-                                { adminID: userID },
-                            ].map((param, index) => (
-                                <pre key={index} className="bg-gray-100 p-2 rounded-md text-black whitespace-pre-wrap">
-            {JSON.stringify(param, null, 4)}
-          </pre>
-                            ))}
+                            <pre key={index} className="bg-gray-100 p-2 rounded-md text-black whitespace-pre-wrap">
+                                email: [EMAIL FIELD]
+                            </pre>
+                            <pre key={index} className="bg-gray-100 p-2 rounded-md text-black whitespace-pre-wrap">
+                                eventID: {eventID}
+                            </pre>
+                            <pre key={index} className="bg-gray-100 p-2 rounded-md text-black whitespace-pre-wrap">
+                                classID: {classID}
+                                </pre>
+                            <pre key={index} className="bg-gray-100 p-2 rounded-md text-black whitespace-pre-wrap">
+                                adminID: {userID}
+                                </pre>
+
+
+
                         </div>
                     </div>
                 </div>
