@@ -49,7 +49,7 @@ export default function WorkshopPage() {
 
             {/* ✅ Apply markdown styling */}
             <div className="markdown-content min-w-full max-w-xl sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-6xl justify-center items-center flex flex-col" >
-                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6cl">Workshop: {slug}</h1>
+                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6cl">README: {slug}</h1>
 
                 <div className={"markdown"} dangerouslySetInnerHTML={{ __html: content }} />
             </div>
