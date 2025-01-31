@@ -312,7 +312,7 @@ export default function Announcements() {
             )}
             {showAPILink && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                    <div className="bg-white p-6 rounded-lg shadow-lg w-[60%] relative">
+                    <div className="bg-white p-6 rounded-lg shadow-lg w-[60%] h-[100%] md:h-[60%] relative">
                         <button
                             onClick={() => setShowAPILink(false)}
                             className="absolute top-4 right-4 bg-gray-200 hover:bg-gray-300 text-black rounded-full p-2"
@@ -335,7 +335,7 @@ export default function Announcements() {
 
                         <h2 className="text-xl font-bold mb-4 text-black">API Link and JSON</h2>
 
-                        <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-4 overflow-scroll max-h-[90%]">
                             {/* Clickable API Link */}
                             <div className="text-black">POST JSON</div>
                             <div
@@ -355,16 +355,16 @@ export default function Announcements() {
 
                             {/* URL Parameters */}
                             <div className="text-black">URL Parameters</div>
-                            <pre key={index} className="bg-gray-100 p-2 rounded-md text-black whitespace-pre-wrap">
+                            <pre className="bg-gray-100 p-2 rounded-md text-black whitespace-pre-wrap">
                                 email: [EMAIL FIELD]
                             </pre>
-                            <pre key={index} className="bg-gray-100 p-2 rounded-md text-black whitespace-pre-wrap">
+                            <pre  className="bg-gray-100 p-2 rounded-md text-black whitespace-pre-wrap">
                                 eventID: {eventID}
                             </pre>
-                            <pre key={index} className="bg-gray-100 p-2 rounded-md text-black whitespace-pre-wrap">
+                            <pre  className="bg-gray-100 p-2 rounded-md text-black whitespace-pre-wrap">
                                 classID: {classID}
                                 </pre>
-                            <pre key={index} className="bg-gray-100 p-2 rounded-md text-black whitespace-pre-wrap">
+                            <pre  className="bg-gray-100 p-2 rounded-md text-black whitespace-pre-wrap">
                                 adminID: {userID}
                                 </pre>
 
