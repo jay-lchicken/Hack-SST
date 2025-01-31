@@ -62,16 +62,18 @@ export async function POST(request) {
         // Update the 'attended' field in the student document
         await studentRef.update({ attended });
 
-        console.log(`Updated attended for studentID: ${userID} to ${attended}`);
+        console.log(`Updated status for studentID: ${userID} to ${attended}`);
 
         return NextResponse.json(
-            { message: 'Student attendance updated successfully.' },
+            { message: 'Student status updated successfully.' },
             { status: 200 }
         );
     } catch (error) {
-        console.error('Error updating attendance:', error.message);
+        const { searchParams } = new URL(request.url);
+        const email = searchParams.get('email');
+        console.error('Error updating status:', error.message);
         return NextResponse.json(
-            { error: 'Failed to update attendance', details: error.message },
+            { error: 'Failed to update status', details: error.message , email: email},
             { status: 500 }
         );
     }
