@@ -312,29 +312,59 @@ export default function Announcements() {
             )}
             {showAPILink && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                    <div className="bg-white p-6 rounded-lg shadow-lg w-96">
-                        <h2 className="text-xl font-bold mb-4 text-black">
-                            API Link and JSON
-                        </h2>
+                    <div className="bg-white p-6 rounded-lg shadow-lg w-[60%] relative">
+                        <button
+                            onClick={() => setShowAPILink(false)}
+                            className="absolute top-4 right-4 bg-gray-200 hover:bg-gray-300 text-black rounded-full p-2"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="h-6 w-6 text-black"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M6 18L18 6M6 6l12 12"
+                                />
+                            </svg>
+                        </button>
+
+                        <h2 className="text-xl font-bold mb-4 text-black">API Link and JSON</h2>
+
                         <div className="flex flex-col gap-4">
-                            {/* Title */}
+                            {/* Clickable API Link */}
                             <div className="text-black">POST JSON</div>
-
-                            {/* URL Block */}
-                            <div className="flex flex-col gap-4 text-blue-500 break-words overflow-wrap break-word whitespace-normal" onClick={handleCopy} title={"Click to copy"}>
-                                https://hackatsst.hackclub.com/api/formChangeStatus?adminID={userID}&classID={classID}&email=[SET IN FORM]&eventID={eventID}
+                            <div
+                                className="text-blue-500 break-words whitespace-normal cursor-pointer"
+                                onClick={handleCopy}
+                                title="Click to copy"
+                            >
+                                https://hackatsst.hackclub.com/api/formChangeStatus
                             </div>
-                            {copied && (
-                                <div className="text-green-500 text-sm">Copied!</div>
-                            )}
+                            {copied && <div className="text-green-500 text-sm">Copied!</div>}
 
-                            {/* JSON Block */}
-                            <div className="flex flex-col gap-2">
-                                <div className="text-black">JSON</div>
-                                <pre className="text-black break-words overflow-wrap break-word whitespace-pre-wrap bg-gray-100 p-2 rounded-md">
-            {JSON.stringify({ attended: false }, null, 4)}
+                            {/* JSON Body */}
+                            <div className="text-black">Body</div>
+                            <pre className="bg-gray-100 p-2 rounded-md text-black whitespace-pre-wrap">
+          {JSON.stringify({ attended: "false/true" }, null, 4)}
         </pre>
-                            </div>
+
+                            {/* URL Parameters */}
+                            <div className="text-black">URL Parameters</div>
+                            {[
+                                { email: "[EMAIL FIELD]" },
+                                { eventID: eventID },
+                                { classID: classID },
+                                { adminID: userID },
+                            ].map((param, index) => (
+                                <pre key={index} className="bg-gray-100 p-2 rounded-md text-black whitespace-pre-wrap">
+            {JSON.stringify(param, null, 4)}
+          </pre>
+                            ))}
                         </div>
                     </div>
                 </div>

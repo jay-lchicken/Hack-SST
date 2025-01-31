@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4b79a46b-3030-48a9-a32d-0e0678d17c27" name="Changes" comment="Changed Format">
+    <list default="true" id="4b79a46b-3030-48a9-a32d-0e0678d17c27" name="Changes" comment="Fixed Bug">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/admin/classEvent/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/admin/classEvent/page.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -97,7 +98,7 @@
       <workItem from="1738201094890" duration="821000" />
       <workItem from="1738218516387" duration="6331000" />
       <workItem from="1738293635405" duration="20000" />
-      <workItem from="1738301104201" duration="4132000" />
+      <workItem from="1738301104201" duration="5637000" />
     </task>
     <task id="LOCAL-00001" summary="Creation">
       <option name="closed" value="true" />
@@ -379,7 +380,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738305534997</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Fixed Bug">
+      <option name="closed" value="true" />
+      <created>1738305703269</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1738305703269</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -418,10 +427,10 @@
     <MESSAGE value="Added Hover" />
     <MESSAGE value="Fixed Events Button not working" />
     <MESSAGE value="Added Workshops" />
-    <MESSAGE value="Fixed Bug" />
     <MESSAGE value="Added form api" />
     <MESSAGE value="Added Debugging" />
     <MESSAGE value="Changed Format" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed Format" />
+    <MESSAGE value="Fixed Bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed Bug" />
   </component>
 </project>
