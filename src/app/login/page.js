@@ -159,8 +159,106 @@ export default function Home() {
           class="flex flex-col items-center justify-around gap-4 w-full  "
           name="auth"
         >
-          {error && <p className="text-red-500 text-sm mb-2">{error}</p>}
-          <div className="flex flex-col items-center justify-center   p-9  bg-neutral-800 rounded-3xl max-w-md md:max-w-2xl w-full">
+          <div
+              className="flex flex-col items-center justify-center   p-9  bg-neutral-800 rounded-3xl max-w-md md:max-w-2xl w-full ">
+            {user && (
+                <div
+                    className="mb-10 relative w-full max-w-96 flex flex-wrap items-center justify-center py-3 pl-4 pr-14 rounded-lg text-base font-medium [transition:all_0.5s_ease] border-solid border border-[#4CAF50] text-[#2D6A4F] [&_svg]:text-[#2D6A4F] group bg-[linear-gradient(#4CAF501a,#4CAF501a)]"
+                >
+                  <button
+                      type="button"
+                      aria-label="close-error"
+                      onClick={() => setError("")}
+                      className="absolute right-4 p-1 rounded-md transition-opacity text-[#4CAF50] border border-[#4CAF50] opacity-40 hover:opacity-100"
+                  >
+                    <svg
+                        stroke="currentColor"
+                        fill="none"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        height="16"
+                        width="16"
+                        className="sizer [--sz:16px] h-4 w-4"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M18 6 6 18"></path>
+                      <path d="m6 6 12 12"></path>
+                    </svg>
+                  </button>
+                  <p className="flex flex-row items-center mr-auto gap-x-2">
+                    <svg
+                        stroke="currentColor"
+                        fill="none"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        height="28"
+                        width="28"
+                        className="h-7 w-7"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
+                      <path d="M12 9v4"></path>
+                      <path d="M12 17h.01"></path>
+                    </svg>
+                    Signed In As: {user.email}
+                  </p>
+                </div>
+            )}
+            {error &&
+                <div
+                    className="mb-10 relative w-full max-w-96 flex flex-wrap items-center justify-center py-3 pl-4 pr-14 rounded-lg text-base font-medium [transition:all_0.5s_ease] border-solid border border-[#f85149] text-[#b22b2b] [&amp;_svg]:text-[#b22b2b] group bg-[linear-gradient(#f851491a,#f851491a)] "
+                >
+                  <button
+                      type="button"
+                      aria-label="close-error"
+                        onClick={() => setError('')}
+                      className="absolute right-4 p-1 rounded-md transition-opacity text-[#f85149] border border-[#f85149] opacity-40 hover:opacity-100"
+                  >
+                    <svg
+                        stroke="currentColor"
+                        fill="none"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        height="16"
+                        width="16"
+                        className="sizer [--sz:16px] h-4 w-4"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M18 6 6 18"></path>
+                      <path d="m6 6 12 12"></path>
+                    </svg>
+                  </button>
+                  <p className="flex flex-row items-center mr-auto gap-x-2">
+                    <svg
+                        stroke="currentColor"
+                        fill="none"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        height="28"
+                        width="28"
+                        className="h-7 w-7"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                          d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"
+                      ></path>
+                      <path d="M12 9v4"></path>
+                      <path d="M12 17h.01"></path>
+                    </svg>
+                    Incorrect Username or Password
+                  </p>
+                </div>
+
+            }
+
             <div className="input__container">
               <div className="shadow__input"></div>
               <button className="input__button__shadow">
@@ -197,7 +295,6 @@ export default function Home() {
             </div>
 
 
-
           </div>
           {/*<button*/}
           {/*    class="max-w-screen-md w-[75%] mx-[10%] md:text-xl md:w-[40%] p-3 px-10 mt-5 bg-red-500 font-bold text-white rounded-2xl md:px-16 hover:text-red-500 hover:bg-white"*/}
@@ -205,13 +302,7 @@ export default function Home() {
           {/*>*/}
           {/*  Login*/}
           {/*</button>*/}
-          {user && (
-              <div className="mt-4">
-                <p className="text-green-600 font-semibold">
-                  Signed in as: {user.email}
-                </p>
-              </div>
-          )}
+
           <a
               href="https://hackclub.techtime.coffee"
               class="text-white my-5 hover:font-semibold"
