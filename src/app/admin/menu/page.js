@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { getAuth, signOut } from "firebase/auth";
 import {useRouter} from "next/navigation";
 
 const firebaseConfig = {
@@ -103,6 +103,14 @@ export default function Home() {
         }
         setIsSubmitting(false);
     };
+    const logout = async () => {
+        try {
+            await signOut(auth);
+            router.push("/login");
+        } catch (err) {
+            console.error("Error logging out:", err.message);
+        }
+    };
     const checkAdminStatus = async (userId) => {
         const response = await fetch(`/api/checkAdmin?id=${userId}`);
         if (!response.ok) {
@@ -163,10 +171,16 @@ export default function Home() {
                 <div className="w-full max-w-2xl bg-white shadow-md rounded-lg p-4">
                     <div className="flex items-center justify-between mb-4">
                         <h1 className="text-2xl font-bold mb-4">Your Classes</h1>
-                        <button className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
-                        onClick={() => setShowPopup(true)}>
-                            Add Class
-                        </button>
+                        <div className={"space-x-4"}>
+                            <button className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
+                                    onClick={() => setShowPopup(true)}>
+                                Add Class
+                            </button>
+                            <button className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
+                                    onClick={() => logout()}>
+                                Logout
+                            </button>
+                        </div>
                     </div>
                     <ul>
                         {classes.length > 0 ? (

@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { onAuthStateChanged } from "firebase/auth";
+import {onAuthStateChanged, signOut} from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import {useRouter} from "next/navigation";
@@ -61,7 +61,14 @@ export default function Home() {
         const data = await response.json();
         return data;
     };
-
+    const logout = async () => {
+        try {
+            await signOut(auth);
+            router.push("/login");
+        } catch (err) {
+            console.error("Error logging out:", err.message);
+        }
+    };
 
 
 
@@ -99,6 +106,12 @@ export default function Home() {
         <div className="w-full max-w-2xl bg-neutral-800 shadow-md rounded-lg p-6">
             <div className="flex items-center justify-between mb-6">
                 <h1 className="text-2xl font-bold text-white">Your Classes</h1>
+                <button
+                    className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-white hover:text-red-500"
+                    onClick={logout}>
+                    Logout
+                </button>
+
             </div>
             <ul>
                 {classes.length > 0 ? (

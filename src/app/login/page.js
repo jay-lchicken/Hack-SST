@@ -54,6 +54,7 @@ export default function Home() {
   }, []);
 
   const handleLogin = async (e) => {
+    setError(''); // Clear any previous error
     e.preventDefault();
     try {
       const userCredential = await signInWithEmailAndPassword(
@@ -64,6 +65,7 @@ export default function Home() {
       const isAdmin = await checkAdminStatus(userCredential.user.uid);
 
       if (isAdmin) {
+
         router.push('/admin/menu');
       } else {
         router.push('/student');
@@ -154,42 +156,65 @@ export default function Home() {
         </div>
         <form
           onSubmit={handleLogin}
-          class="flex flex-col items-center justify-around gap-4 w-full"
+          class="flex flex-col items-center justify-around gap-4 w-full  "
           name="auth"
         >
           {error && <p className="text-red-500 text-sm mb-2">{error}</p>}
-          <div class="max-w-screen-md p-9 w-[75%] mx-[10%] mb-[4%] bg-neutral-800 rounded-3xl md:p-14 md:w-[40%]">
-            <input
-              class="p-3 rounded-2xl w-[100%] text-red-500 md:text-xl mb-2"
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-              class="p-3 rounded-2xl w-[100%] text-red-500 md:text-xl"
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          <button
-            class="max-w-screen-md w-[75%] mx-[10%] md:text-xl md:w-[40%] p-3 px-10 mt-5 bg-red-500 font-bold text-white rounded-2xl md:px-16 hover:text-red-500 hover:bg-white"
-            type="submit"
-          >
-            Login
-          </button>
-          {user && (
-            <div className="mt-4">
-              <p className="text-green-600 font-semibold">
-                Signed in as: {user.email}
-              </p>
+          <div className="flex flex-col items-center justify-center   p-9  bg-neutral-800 rounded-3xl max-w-md md:max-w-2xl w-full">
+            <div className="input__container">
+              <div className="shadow__input"></div>
+              <button className="input__button__shadow">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="#000000"
+                    width="20px"
+                    height="20px"
+                >
+                  <path d="M0 0h24v24H0z" fill="none"></path>
+                  <path
+                      d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+                  ></path>
+                </svg>
+              </button>
+              <input
+                  type="text"
+                  name="email"
+                  className="input__search"
+                  placeholder="Enter Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
+            <div className=" password-container mt-8">
+              <input
+                  className="password-input"
+                  type="password"
+                  placeholder="Type your password..."
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+
+
+
+          </div>
+          {/*<button*/}
+          {/*    class="max-w-screen-md w-[75%] mx-[10%] md:text-xl md:w-[40%] p-3 px-10 mt-5 bg-red-500 font-bold text-white rounded-2xl md:px-16 hover:text-red-500 hover:bg-white"*/}
+          {/*    type="submit"*/}
+          {/*>*/}
+          {/*  Login*/}
+          {/*</button>*/}
+          {user && (
+              <div className="mt-4">
+                <p className="text-green-600 font-semibold">
+                  Signed in as: {user.email}
+                </p>
+              </div>
           )}
           <a
-            href="https://hackclub.techtime.coffee"
-            class="text-white my-5 hover:font-semibold"
+              href="https://hackclub.techtime.coffee"
+              class="text-white my-5 hover:font-semibold"
           >
             &larr; back to main website
           </a>
