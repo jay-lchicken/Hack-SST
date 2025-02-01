@@ -283,7 +283,7 @@ export default function Home() {
                   onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            <div className="input__container mt-8">
+            <div className="input__container m-8">
               <div className="shadow__input"></div>
               <button className="input__button__shadow">
                 <svg
@@ -305,6 +305,7 @@ export default function Home() {
                   onChange={(e) => setPassword(e.target.value)}
               />
             </div>
+            <button className="button">Login</button>
 
 
           </div>
