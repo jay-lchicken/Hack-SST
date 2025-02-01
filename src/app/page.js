@@ -48,18 +48,27 @@ export default function Home() {
             </span>
             , find out everything about us!
           </h1>
-          <a
-            class="text-center p-3 px-10 mt-5 bg-red-500 font-bold text-white rounded-2xl md:px-16 hover:text-red-500 hover:bg-white"
-            onClick={() => window.location.href = '/login'}
-          >
-            Sign In As Member
-          </a>
+          <button className="animated-button mt-4" onClick={() => window.location.href="/login"}>
+            <svg viewBox="0 0 24 24" className="arr-2" xmlns="http://www.w3.org/2000/svg">
+              <path
+                  d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+              ></path>
+            </svg>
+            <span className="text">Sign In As Member</span>
+            <span className="circle"></span>
+            <svg viewBox="0 0 24 24" className="arr-1" xmlns="http://www.w3.org/2000/svg">
+              <path
+                  d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+              ></path>
+            </svg>
+          </button>
+
         </div>
         <div class="max-w-screen-lg w-[80%] p-10 mx-[10%] mb-[4%] bg-neutral-800 rounded-3xl md:p-14">
           <img
-            class="h-auto w-full object-cover rounded-3xl mb-4"
-            src="./BannerImg1.jpg"
-            alt="./BannerImg1.jpg"
+              class="h-auto w-full object-cover rounded-3xl mb-4"
+              src="./BannerImg1.jpg"
+              alt="./BannerImg1.jpg"
           />
           <h1 class="text-xl font-bold text-white pb-3 md:text-2xl">
             Who Are We?
@@ -233,9 +242,20 @@ export default function Home() {
             to Sec 1s with a rough intake of 20-30 members every year
           </h1>
           <div class="flex flex-col items-center gap-3">
-            <a class="text-center px-8 p-3 hx:px-10 mt-10 bg-red-500 font-bold text-white rounded-2xl md:px-28 hover:text-red-500 hover:bg-white hover:cursor-not-allowed">
-              Registrations Closed!
-            </a>
+            <button className="animated-button mt-4" >
+              <svg viewBox="0 0 24 24" className="arr-2" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+                ></path>
+              </svg>
+              <span className="text">Registration Closed</span>
+              <span className="circle"></span>
+              <svg viewBox="0 0 24 24" className="arr-1" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+                ></path>
+              </svg>
+            </button>
             {/* <a class="text-white font-normal hover:font-bold" href="reg.html">
               Find Out More
             </a> */}

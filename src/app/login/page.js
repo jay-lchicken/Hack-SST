@@ -276,15 +276,27 @@ export default function Home() {
                 </svg>
               </button>
               <input
-                  type="text"
-                  name="email"
-                  className="input__search"
-                  placeholder="Enter Email"
+                  className="password-input"
+                  type="email"
+                  placeholder="Type your email..."
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            <div className=" password-container mt-8">
+            <div className="input__container mt-8">
+              <div className="shadow__input"></div>
+              <button className="input__button__shadow">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="#000000"
+                    width="20px"
+                    height="20px"
+                >
+                  <path d="M0 0h24v24H0z" fill="none"/>
+                  <path d="M21 18h-2v-2h-2v2h-2v2h2v2h2v-2h2v-2zM12.65 10C11.83 7.67 9.61 6 7 6c-3.31 0-6 2.69-6 6s2.69 6 6 6c2.61 0 4.83-1.67 5.65-4H17v4h4v-4h2v-4H12.65zM7 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
+                </svg>
+              </button>
               <input
                   className="password-input"
                   type="password"
