@@ -35,29 +35,31 @@ export async function GET(request) {
         }
 
         console.log(`Fetching announcements for userID: ${userID}, classID: ${classID}`);
-
         const db = admin.firestore();
 
-        // Reference to the announcements collection
-        const studentRef = db
-            .collection('users')
-            .doc(userID)
-            .collection('joinedClasses')
-            .doc(classID)
+        const batch = db.batch();
+        const studentRef = db.collection('users').doc(userID).collection('joinedClasses').doc(classID);
         const classDoc = await studentRef.get();
         const teacherID = classDoc.data().teacherId;
         const classDocRef = db.collection('users').doc(teacherID).collection('classes').doc(classID).collection('events');
-        const announcementsSnapshot = await classDocRef.get();
-        if (announcementsSnapshot.empty) {
+
+        const eventsSnapshot = await classDocRef.get();
+        const events = [];
+        eventsSnapshot.forEach((doc) => {
+            events.push({ id: doc.id, ...doc.data() });
+        });
+
+        await batch.commit();
+
+        if (eventsSnapshot.empty) {
             console.log(`No announcements found for userID: ${userID}, classID: ${classID}`);
             return NextResponse.json({ announcements: [] }, { status: 200 }); // Return an empty list if no announcements are found
         }
 
         const announcements = [];
 
-        for (const doc of announcementsSnapshot.docs) { // Use 'docs' to iterate over documents
-            const announcementData = doc.data();
-            console.log(announcementData);
+        for (const event of events) {
+            console.log(event);
 
             // Reference to the student's document
             const ref = db
@@ -66,7 +68,7 @@ export async function GET(request) {
                 .collection('classes')
                 .doc(classID)
                 .collection('events')
-                .doc(doc.id)
+                .doc(event.id)
                 .collection('Students')
                 .doc(userID);
 
@@ -77,22 +79,21 @@ export async function GET(request) {
                 const attended = studentDoc.exists ? studentDoc.data().attended : false;
 
                 announcements.push({
-                    id: doc.id,
-                    name: announcementData.name || "No name provided", // Gracefully handle missing name
+                    id: event.id,
+                    name: event.name || "No name provided", // Gracefully handle missing name
                     attended: attended, // Use the fetched attended status
-                    start: announcementData.start,
-                    end: announcementData.end,
-                    trueTitle: announcementData.trueTitle,
-                    falseTitle: announcementData.falseTitle
+                    start: event.start,
+                    end: event.end,
+                    trueTitle: event.trueTitle,
+                    falseTitle: event.falseTitle
                 });
             } catch (error) {
-                console.error(`Error fetching student data for eventID: ${doc.id}`, error);
+                console.error(`Error fetching student data for eventID: ${event.id}`, error);
             }
         }
 
-// Return or process announcements as needed
+        // Return or process announcements as needed
         return NextResponse.json({ announcements }, { status: 200 });
-
         console.log(
             `Announcements retrieved for userID ${userID}, classID ${classID}:`,
             announcements

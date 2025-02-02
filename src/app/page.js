@@ -13,6 +13,7 @@ export default function Home() {
           </h1>
           <h1 class="h-[60px] w-36 text-xl font-semibold text-white">
             a branch of
+
             <span>
                 <a
                     href="https://hackclub.com"

@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4b79a46b-3030-48a9-a32d-0e0678d17c27" name="Changes" comment="Improved UI">
+    <list default="true" id="4b79a46b-3030-48a9-a32d-0e0678d17c27" name="Changes" comment="Added GitHub integration and updated project settings">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/api/getStudentAttendance/route.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/getStudentAttendance/route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/hoverPopup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/hoverPopup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/student/class/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/student/class/page.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +46,17 @@
   &quot;keyToString&quot;: {
     &quot;Node.js.page.js.executor&quot;: &quot;Run&quot;,
     &quot;Node.js.workshop.js.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ChatTagsLlmMigration&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.CodyAccountHistoryMigration&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.CodyAccountsIdsRefresh&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.CodyAssignOrphanedChatsToActiveAccount&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.CodyConvertUrlToCodebaseName&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.CodyHistoryLlmMigration&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.CodyMigrateChatHistory-v2&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.CodyProjectSettingsMigration&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.DeprecatedChatLlmMigration&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ToggleCodyToolWindowAfterMigration&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/jay_lchicken/WebstormProjects/hackatsst/src/components&quot;,
@@ -54,6 +66,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;ts.external.directory.path&quot;: &quot;/Users/jay_lchicken/Applications/WebStorm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -117,15 +130,15 @@
       <workItem from="1738456865840" duration="3000" />
       <workItem from="1738467094201" duration="2017000" />
       <workItem from="1738481029986" duration="478000" />
-      <workItem from="1738481520927" duration="617000" />
-    </task>
-    <task id="LOCAL-00003" summary="Fixed Image">
-      <option name="closed" value="true" />
-      <created>1737681140427</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1737681140427</updated>
+      <workItem from="1738481520927" duration="631000" />
+      <workItem from="1738495051965" duration="169000" />
+      <workItem from="1738495233403" duration="234000" />
+      <workItem from="1738495472380" duration="151000" />
+      <workItem from="1738495630532" duration="87000" />
+      <workItem from="1738495728415" duration="119000" />
+      <workItem from="1738495856492" duration="229000" />
+      <workItem from="1738496520641" duration="330000" />
+      <workItem from="1738496869565" duration="2269000" />
     </task>
     <task id="LOCAL-00004" summary="Fixed UI">
       <option name="closed" value="true" />
@@ -511,7 +524,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738469089601</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="Added GitHub">
+      <option name="closed" value="true" />
+      <created>1738482144870</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1738482144870</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -529,7 +550,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added Student View For attendance" />
     <MESSAGE value="Did some changws" />
     <MESSAGE value="Added Status Customisation" />
     <MESSAGE value="Modified Student View" />
@@ -554,6 +574,7 @@
     <MESSAGE value="Bug Fix" />
     <MESSAGE value="Fixed Mobile UI" />
     <MESSAGE value="Improved UI" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved UI" />
+    <MESSAGE value="Added GitHub" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added GitHub" />
   </component>
 </project>

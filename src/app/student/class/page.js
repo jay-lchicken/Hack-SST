@@ -144,7 +144,7 @@ export default function Announcements() {
     return (
         <div className="bg-neutral-900 flex flex-col items-center justify-center min-h-screen ">
             {/* Main Content */}
-            <div className="w-full  max-w-2xl md:max-w-6xl bg-neutral-800 shadow-md rounded-lg p-6 max-h-[70%] h-[70vh]  ">
+            <div className="w-full max-w-2xl md:max-w-6xl bg-neutral-800 shadow-md rounded-lg p-6 max-h-[70%] h-[70vh]">
                 <div className="flex items-center justify-between mb-6">
                     <h1 className="text-2xl font-bold text-white">Class Announcements</h1>
                     <button
@@ -154,7 +154,7 @@ export default function Announcements() {
                         ☰ Events
                     </button>
                 </div>
-                <ul className="overflow-scroll max-h-[80%]">
+                <ul className="overflow-y-auto overflow-x-clip max-h-[80%] flex flex-wrap">
                     {announcements.length > 0 ? (
                         announcements
                             .sort((a, b) => {

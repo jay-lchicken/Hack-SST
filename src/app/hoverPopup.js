@@ -73,7 +73,7 @@ const HoverPopupLink = ({ url }) => {
 
     return (
         <div
-            className="relative inline-block"
+            className="relative inline-block text-wrap"
             ref={linkRef}
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
@@ -82,20 +82,22 @@ const HoverPopupLink = ({ url }) => {
                 href={url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-green-600 underline"
+                className="text-green-600 underline break-all"
             >
                 {url}
             </a>
             {mounted && (
                 <div
                     className={`
-            absolute ${isFirst ? "top-full mt-2" : "bottom-full mb-2"} left-1/2 -translate-x-1/2
-            bg-white border border-gray-200 rounded-lg p-4 shadow-lg w-64 z-[999999]
-            transition-all duration-300 ease-in-out
-            ${hovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}
-        `}
+        absolute ${isFirst ? "top-full mt-2" : "bottom-full mb-2"} left-1/2 -translate-x-1/2
+        bg-white border border-gray-200 rounded-lg p-4 shadow-lg z-[999999]
+        transition-all duration-300 ease-in-out
+        ${hovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}
+    `}
                     style={{
                         pointerEvents: hovered ? "auto" : "none",
+                        wordWrap: "break-word",
+                        whiteSpace: "normal",
                     }}
                 >
                     {loading && <p className="text-sm text-gray-500">Loading preview...</p>}
