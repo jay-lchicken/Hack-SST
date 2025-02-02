@@ -1,18 +1,19 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const HoverPopupLink = ({ url }) => {
     const [hovered, setHovered] = useState(false);
     const [metadata, setMetadata] = useState(null);
     const [loading, setLoading] = useState(false);
     const [mounted, setMounted] = useState(false);
+    const [isFirst, setIsFirst] = useState(false);
+    const linkRef = useRef(null);
 
     useEffect(() => {
         if (hovered) {
             setMounted(true);
         } else {
-            // Delay unmounting to allow animation to complete
             const timer = setTimeout(() => setMounted(false), 300);
             return () => clearTimeout(timer);
         }
@@ -63,9 +64,17 @@ const HoverPopupLink = ({ url }) => {
         fetchMetadata();
     }, [url]);
 
+    useEffect(() => {
+        if (linkRef.current) {
+            const rect = linkRef.current.getBoundingClientRect();
+            setIsFirst(rect.top < window.innerHeight / 2); // If it's near the top of the page, show below
+        }
+    }, []);
+
     return (
         <div
             className="relative inline-block"
+            ref={linkRef}
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
         >
@@ -80,13 +89,13 @@ const HoverPopupLink = ({ url }) => {
             {mounted && (
                 <div
                     className={`
-            absolute bottom-full left-1/2 -translate-x-1/2 mb-2
-            bg-white border border-gray-200 rounded-lg p-4 shadow-lg w-64 z-50
+            absolute ${isFirst ? "top-full mt-2" : "bottom-full mb-2"} left-1/2 -translate-x-1/2
+            bg-white border border-gray-200 rounded-lg p-4 shadow-lg w-64 z-[999999]
             transition-all duration-300 ease-in-out
             ${hovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}
         `}
                     style={{
-                        pointerEvents: hovered ? "auto" : "none", // Ensure no interaction when hidden
+                        pointerEvents: hovered ? "auto" : "none",
                     }}
                 >
                     {loading && <p className="text-sm text-gray-500">Loading preview...</p>}
@@ -113,6 +122,5 @@ const HoverPopupLink = ({ url }) => {
         </div>
     );
 };
-
 
 export default HoverPopupLink;

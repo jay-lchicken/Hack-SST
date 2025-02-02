@@ -148,13 +148,13 @@ export default function Announcements() {
                 <div className="flex items-center justify-between mb-6">
                     <h1 className="text-2xl font-bold text-white">Class Announcements</h1>
                     <button
-                        className="text-white text-xl px-4 py-2 bg-red-500 rounded-lg hover:bg-red-600"
+                        className="button"
                         onClick={() => setSidebarOpen(true)}
                     >
                         ☰ Events
                     </button>
                 </div>
-                <ul className={"overflow-auto max-h-[80%] "}>
+                <ul className="overflow-scroll max-h-[80%]">
                     {announcements.length > 0 ? (
                         announcements
                             .sort((a, b) => {
@@ -211,7 +211,7 @@ export default function Announcements() {
                 <div className="flex items-center justify-between mb-6">
                     <h1 className="text-2xl font-bold text-white">Class Events</h1>
                     <button
-                        className="text-white text-xl px-4 py-2 bg-red-500 rounded-lg hover:bg-red-600"
+                        className="button2"
                         onClick={() => setSidebarOpen(false)}
                     >
                         ✕ Close

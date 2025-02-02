@@ -130,7 +130,7 @@ export default function Home() {
         <h1 className="text-4xl text-red-500 font-bold md:text-6xl pl-2">
           Hack@SST
         </h1>
-        <h1 class="h-[60px] w-32 text-xl font-semibold text-white">
+        <h1 class="h-[60px] w-36 text-xl font-semibold text-white">
           a branch of
           <span>
             <a
