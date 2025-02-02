@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4b79a46b-3030-48a9-a32d-0e0678d17c27" name="Changes" comment="Fixed Mobile UI">
+    <list default="true" id="4b79a46b-3030-48a9-a32d-0e0678d17c27" name="Changes" comment="Improved UI">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/login/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/login/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/student/class/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/student/class/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/student/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/student/page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,15 +115,9 @@
       <workItem from="1738410297633" duration="234000" />
       <workItem from="1738410631974" duration="55000" />
       <workItem from="1738456865840" duration="3000" />
-      <workItem from="1738467094201" duration="1881000" />
-    </task>
-    <task id="LOCAL-00002" summary="Added announcement feature">
-      <option name="closed" value="true" />
-      <created>1737619112196</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1737619112196</updated>
+      <workItem from="1738467094201" duration="2017000" />
+      <workItem from="1738481029986" duration="478000" />
+      <workItem from="1738481520927" duration="617000" />
     </task>
     <task id="LOCAL-00003" summary="Fixed Image">
       <option name="closed" value="true" />
@@ -512,7 +503,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738410679984</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="Improved UI">
+      <option name="closed" value="true" />
+      <created>1738469089601</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1738469089601</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -530,7 +529,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added Change Of Attendance Status" />
     <MESSAGE value="Added Student View For attendance" />
     <MESSAGE value="Did some changws" />
     <MESSAGE value="Added Status Customisation" />
@@ -555,6 +553,7 @@
     <MESSAGE value="Added UI" />
     <MESSAGE value="Bug Fix" />
     <MESSAGE value="Fixed Mobile UI" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed Mobile UI" />
+    <MESSAGE value="Improved UI" />
+    <option name="LAST_COMMIT_MESSAGE" value="Improved UI" />
   </component>
 </project>
