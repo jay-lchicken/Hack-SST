@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4b79a46b-3030-48a9-a32d-0e0678d17c27" name="Changes" comment="Added GitHub integration and updated project settings">
+    <list default="true" id="4b79a46b-3030-48a9-a32d-0e0678d17c27" name="Changes" comment="Fix typo in privateKey assignment and update project settings">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/api/getStudentAttendance/route.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/getStudentAttendance/route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/hoverPopup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/hoverPopup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/api/getStudentClassAnnouncements/route.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/getStudentClassAnnouncements/route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globals.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/student/class/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/student/class/page.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -138,15 +137,11 @@
       <workItem from="1738495728415" duration="119000" />
       <workItem from="1738495856492" duration="229000" />
       <workItem from="1738496520641" duration="330000" />
-      <workItem from="1738496869565" duration="2269000" />
-    </task>
-    <task id="LOCAL-00004" summary="Fixed UI">
-      <option name="closed" value="true" />
-      <created>1737707366763</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1737707366763</updated>
+      <workItem from="1738496869565" duration="2292000" />
+      <workItem from="1738541312494" duration="226000" />
+      <workItem from="1738541552040" duration="62000" />
+      <workItem from="1738580082358" duration="848000" />
+      <workItem from="1738585729984" duration="3260000" />
     </task>
     <task id="LOCAL-00005" summary="Adjusted Green Login Text">
       <option name="closed" value="true" />
@@ -532,7 +527,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738482144870</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="Refactor attendance fetching and improve UI components">
+      <option name="closed" value="true" />
+      <created>1738499156221</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1738499156221</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -550,7 +553,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Did some changws" />
     <MESSAGE value="Added Status Customisation" />
     <MESSAGE value="Modified Student View" />
     <MESSAGE value="Added hyper link" />
@@ -575,6 +577,7 @@
     <MESSAGE value="Fixed Mobile UI" />
     <MESSAGE value="Improved UI" />
     <MESSAGE value="Added GitHub" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added GitHub" />
+    <MESSAGE value="Refactor attendance fetching and improve UI components" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor attendance fetching and improve UI components" />
   </component>
 </project>

@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import {use, useEffect, useState} from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
@@ -19,6 +19,7 @@ const firebaseConfig = {
 let auth;
 
 export default function Announcements() {
+    const [loadingNew, setLoadingNew] = useState(false);
     const router = useRouter();
     const [isSidebarOpen, setSidebarOpen] = useState(false);
     const [isAdmin, setIsAdmin] = useState(false);
@@ -33,6 +34,9 @@ export default function Announcements() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [announcementTitle, setAnnouncementTitle] = useState("");
     const [attendance, setAttendance] = useState("");
+    const [offset, setOffset] = useState(0);
+    const [totalAnnouncements, setTotalAnnouncements] = useState(0);
+
 
     useEffect(() => {
         // Get the classID from the URL
@@ -50,10 +54,11 @@ export default function Announcements() {
             if (currentUser) {
                 try {
                     // Check if the current user is an admin
-                    const data = await fetchAnnouncements(classIDS, currentUser.uid);
+                    const data = await fetchAnnouncements(classIDS, currentUser.uid, 0);
                     setAnnouncements(data.announcements || []);
                     const sdata = await fetchAttendance(classIDS, currentUser.uid);
                     setAttendance(sdata.announcements || []);
+                    setUserID(currentUser.uid);
 
                 } catch (err) {
                     console.error("Error fetching announcements:", err.message);
@@ -73,13 +78,25 @@ export default function Announcements() {
 
 
 
+    const fetchMoreAnn = async () => {
+        try {
+            setLoadingNew(true);
+            setOffset(offset + 3);
+            const data = await fetchAnnouncements(classID,userID, offset+3);
+            setAnnouncements((prevAnnouncements) => [...prevAnnouncements, ...data.announcements]);
+            setLoadingNew(false);
+        } catch (error) {
+            console.error("Error fetching more announcements:", error);
+        }
+    };
 
-    const fetchAnnouncements = async (classID, userID) => {
-        const response = await fetch(`/api/getStudentClassAnnouncements?userID=${userID}&classID=${classID}`);
+    const fetchAnnouncements = async (classID, userID, offsets) => {
+        const response = await fetch(`/api/getStudentClassAnnouncements?userID=${userID}&classID=${classID}&offset=${offsets}`);
         if (!response.ok) {
             throw new Error("Failed to fetch announcements");
         }
         const data = await response.json();
+        setTotalAnnouncements(data.totalSize);
         return data;
     };
     const fetchAttendance = async (classID, userID) => {
@@ -199,6 +216,40 @@ export default function Announcements() {
                     ) : (
                         <p className="text-white">No announcements found.</p>
                     )}
+                    {/* Load More Button */}
+                    {announcements.length < totalAnnouncements && !loadingNew && (
+                        <div className="flex justify-center items-center h-full w-full m-8">
+                            <button
+                                className="button m-8"
+                                onClick={fetchMoreAnn}
+                                disabled={loadingNew}
+                            >
+                                Load More
+                            </button>
+                        </div>
+
+                    )}
+                    {loadingNew && (
+                        <div className={"flex justify-center items-center h-full w-full m-8" }>
+                            <div id="wifi-loader">
+                                <svg className="circle-outer" viewBox="0 0 86 86">
+                                    <circle className="back" cx="43" cy="43" r="40"></circle>
+                                    <circle className="front" cx="43" cy="43" r="40"></circle>
+                                    <circle className="new" cx="43" cy="43" r="40"></circle>
+                                </svg>
+                                <svg className="circle-middle" viewBox="0 0 60 60">
+                                    <circle className="back" cx="30" cy="30" r="27"></circle>
+                                    <circle className="front" cx="30" cy="30" r="27"></circle>
+                                </svg>
+                                <svg className="circle-inner" viewBox="0 0 34 34">
+                                    <circle className="back" cx="17" cy="17" r="14"></circle>
+                                    <circle className="front" cx="17" cy="17" r="14"></circle>
+                                </svg>
+                                <div className="text" data-text="Searching"></div>
+                            </div>
+                        </div>)
+
+                    }
                 </ul>
             </div>
 
@@ -214,7 +265,7 @@ export default function Announcements() {
                         className="button2"
                         onClick={() => setSidebarOpen(false)}
                     >
-                        ✕ Close
+                    ✕ Close
                     </button>
                 </div>
                 <ul className={"overflow-auto max-h-[90%]"}>

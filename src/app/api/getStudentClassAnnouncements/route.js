@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import * as admin from 'firebase-admin';
+import {off} from "next/dist/client/components/react-dev-overlay/pages/bus";
 
 // Initialize Firebase Admin SDK if not already initialized
 if (!admin.apps.length) {
@@ -10,7 +11,7 @@ if (!admin.apps.length) {
             credential: admin.credential.cert({
                 projectId: serviceAccount.project_id,
                 clientEmail: serviceAccount.client_email,
-                privateKey: serviceAccount.private_key.replace(/\\n/g, '\n'), // Convert escaped \n back to actual newlines
+                priva1teKey: serviceAccount.private_key.replace(/\\n/g, '\n'), // Convert escaped \n back to actual newlines
             }),
         });
 
@@ -26,7 +27,7 @@ export async function GET(request) {
         const { searchParams } = new URL(request.url);
         const userID = searchParams.get('userID'); // Retrieve the "userID" parameter from the query string
         const classID = searchParams.get('classID'); // Retrieve the "classID" parameter from the query string
-
+        const offset = searchParams.get('offset'); // Retrieve the "offset" parameter from the query string
         if (!userID || !classID) {
             return NextResponse.json(
                 { error: 'userID and classID parameters are required' },
@@ -46,8 +47,20 @@ export async function GET(request) {
             .doc(classID)
         const classDoc = await studentRef.get();
         const teacherID = classDoc.data().teacherId;
-        const classDocRef = db.collection('users').doc(teacherID).collection('classes').doc(classID).collection('announcements');
+        const classDocRef = db.collection('users').doc(teacherID).collection('classes').doc(classID).collection('announcements')
+            .orderBy('timestamp', 'desc')
+            .offset(parseInt(offset))// Order by createdAt field (descending for latest first)
+            .limit(3)
         const announcementsSnapshot = await classDocRef.get();
+
+
+
+        const classDocRef2 = db.collection('users').doc(teacherID).collection('classes').doc(classID).collection('announcements')
+
+
+        const countQuery = classDocRef2.count();
+        const countSnapshot = await countQuery.get();
+        const totalSize = countSnapshot.data().count;
         if (announcementsSnapshot.empty) {
             console.log(`No announcements found for userID: ${userID}, classID: ${classID}`);
             return NextResponse.json({ announcements: [] }, { status: 200 }); // Return an empty list if no announcements are found
@@ -68,7 +81,7 @@ export async function GET(request) {
             announcements
         );
 
-        return NextResponse.json({ announcements }, { status: 200 });
+        return NextResponse.json({ announcements,totalSize }, { status: 200 });
     } catch (error) {
         console.error('Error fetching announcements:', error.message);
         return NextResponse.json(
