@@ -25,6 +25,8 @@ export default function Announcements() {
     const [isAdmin, setIsAdmin] = useState(false);
     const [announcements, setAnnouncements] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [loading2, setLoading2] = useState(false);
+
     const [error, setError] = useState("");
     const [showPopup, setShowPopup] = useState(false);
     const [announcementText, setAnnouncementText] = useState("");
@@ -35,7 +37,10 @@ export default function Announcements() {
     const [announcementTitle, setAnnouncementTitle] = useState("");
     const [attendance, setAttendance] = useState("");
     const [offset, setOffset] = useState(0);
+    const [limit, setLimit] = useState(0);
     const [totalAnnouncements, setTotalAnnouncements] = useState(0);
+    const [totalEvents, setTotalEvents] = useState(0);
+    const [offsets, setOffsets] = useState(0);
 
 
     useEffect(() => {
@@ -56,7 +61,7 @@ export default function Announcements() {
                     // Check if the current user is an admin
                     const data = await fetchAnnouncements(classIDS, currentUser.uid, 0);
                     setAnnouncements(data.announcements || []);
-                    const sdata = await fetchAttendance(classIDS, currentUser.uid);
+                    const sdata = await fetchAttendance(classIDS, currentUser.uid, 0);
                     setAttendance(sdata.announcements || []);
                     setUserID(currentUser.uid);
 
@@ -90,6 +95,18 @@ export default function Announcements() {
         }
     };
 
+    const fetchMoreEve = async () => {
+        try {
+            setLoading2(true);
+            setOffsets(offsets + 3);
+            const data = await fetchAttendance(classID,userID, offsets+3);
+            setAttendance((prevAttendance) => [...prevAttendance, ...(data.announcements || [])]);
+            setLoading2(false);
+        } catch (error) {
+            console.error("Error fetching more announcements:", error);
+        }
+    };
+
     const fetchAnnouncements = async (classID, userID, offsets) => {
         const response = await fetch(`/api/getStudentClassAnnouncements?userID=${userID}&classID=${classID}&offset=${offsets}`);
         if (!response.ok) {
@@ -99,12 +116,15 @@ export default function Announcements() {
         setTotalAnnouncements(data.totalSize);
         return data;
     };
-    const fetchAttendance = async (classID, userID) => {
-        const response = await fetch(`/api/getStudentAttendance?userID=${userID}&classID=${classID}`);
+    const fetchAttendance = async (classID, userID, offsetss) => {
+
+        const response = await fetch(`/api/getStudentAttendance?userID=${userID}&classID=${classID}&offset=${offsetss}`);
         if (!response.ok) {
             throw new Error("Failed to fetch announcements");
         }
         const data = await response.json();
+        setTotalEvents(data.totalSize);
+
         return data;
     };
     const isValidUrl = urlString=> {
@@ -222,7 +242,7 @@ export default function Announcements() {
                             <button
                                 className="button m-8"
                                 onClick={fetchMoreAnn}
-                                disabled={loadingNew}
+                                disabled={loading}
                             >
                                 Load More
                             </button>
@@ -303,6 +323,39 @@ export default function Announcements() {
                     ) : (
                         <p className="text-white">No attendance records found.</p>
                     )}
+                    {attendance.length < totalEvents && !loading2 && (
+                        <div className="flex justify-center items-center h-full w-full m-8">
+                            <button
+                                className="button m-8"
+                                onClick={fetchMoreEve}
+                                disabled={loading2}
+                            >
+                                Load More
+                            </button>
+                        </div>
+
+                    )}
+                    {loading2 && (
+                        <div className={"flex justify-center items-center h-full w-full m-8" }>
+                            <div id="wifi-loader">
+                                <svg className="circle-outer" viewBox="0 0 86 86">
+                                    <circle className="back" cx="43" cy="43" r="40"></circle>
+                                    <circle className="front" cx="43" cy="43" r="40"></circle>
+                                    <circle className="new" cx="43" cy="43" r="40"></circle>
+                                </svg>
+                                <svg className="circle-middle" viewBox="0 0 60 60">
+                                    <circle className="back" cx="30" cy="30" r="27"></circle>
+                                    <circle className="front" cx="30" cy="30" r="27"></circle>
+                                </svg>
+                                <svg className="circle-inner" viewBox="0 0 34 34">
+                                    <circle className="back" cx="17" cy="17" r="14"></circle>
+                                    <circle className="front" cx="17" cy="17" r="14"></circle>
+                                </svg>
+                                <div className="text" data-text="Searching"></div>
+                            </div>
+                        </div>)
+
+                    }
                 </ul>
             </div>
 

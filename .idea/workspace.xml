@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4b79a46b-3030-48a9-a32d-0e0678d17c27" name="Changes" comment="Fix typo in privateKey assignment and update project settings">
+    <list default="true" id="4b79a46b-3030-48a9-a32d-0e0678d17c27" name="Changes" comment="Fix typo in privateKey assignment, add offset parameter for announcements, and enhance UI loading experience">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/api/getStudentClassAnnouncements/route.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/getStudentClassAnnouncements/route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/api/getStudentAttendance/route.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/getStudentAttendance/route.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/student/class/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/student/class/page.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -141,15 +140,10 @@
       <workItem from="1738541312494" duration="226000" />
       <workItem from="1738541552040" duration="62000" />
       <workItem from="1738580082358" duration="848000" />
-      <workItem from="1738585729984" duration="3260000" />
-    </task>
-    <task id="LOCAL-00005" summary="Adjusted Green Login Text">
-      <option name="closed" value="true" />
-      <created>1737709088310</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1737709088310</updated>
+      <workItem from="1738585729984" duration="3559000" />
+      <workItem from="1738624449203" duration="1070000" />
+      <workItem from="1738633224900" duration="1115000" />
+      <workItem from="1738646908487" duration="682000" />
     </task>
     <task id="LOCAL-00006" summary="Edited the description and title">
       <option name="closed" value="true" />
@@ -535,7 +529,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738499156221</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="Fix typo in privateKey assignment, add offset parameter for announcements, and enhance UI loading experience">
+      <option name="closed" value="true" />
+      <created>1738589095156</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1738589095156</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -553,7 +555,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added Status Customisation" />
     <MESSAGE value="Modified Student View" />
     <MESSAGE value="Added hyper link" />
     <MESSAGE value="Added Sorting" />
@@ -578,6 +579,7 @@
     <MESSAGE value="Improved UI" />
     <MESSAGE value="Added GitHub" />
     <MESSAGE value="Refactor attendance fetching and improve UI components" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor attendance fetching and improve UI components" />
+    <MESSAGE value="Fix typo in privateKey assignment, add offset parameter for announcements, and enhance UI loading experience" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix typo in privateKey assignment, add offset parameter for announcements, and enhance UI loading experience" />
   </component>
 </project>

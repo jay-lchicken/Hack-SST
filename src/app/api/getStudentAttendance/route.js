@@ -26,6 +26,7 @@ export async function GET(request) {
         const { searchParams } = new URL(request.url);
         const userID = searchParams.get('userID'); // Retrieve the "userID" parameter from the query string
         const classID = searchParams.get('classID'); // Retrieve the "classID" parameter from the query string
+        const offset = searchParams.get('offset'); // Retrieve the "classID" parameter from the query string
 
         if (!userID || !classID) {
             return NextResponse.json(
@@ -36,12 +37,14 @@ export async function GET(request) {
 
         console.log(`Fetching announcements for userID: ${userID}, classID: ${classID}`);
         const db = admin.firestore();
-
         const batch = db.batch();
         const studentRef = db.collection('users').doc(userID).collection('joinedClasses').doc(classID);
         const classDoc = await studentRef.get();
         const teacherID = classDoc.data().teacherId;
-        const classDocRef = db.collection('users').doc(teacherID).collection('classes').doc(classID).collection('events');
+        const classDocRef = db.collection('users').doc(teacherID).collection('classes').doc(classID).collection('events')
+            .orderBy('start', 'desc')
+            .offset(parseInt(offset))// Order by createdAt field (descending for latest first)
+            .limit(3);
 
         const eventsSnapshot = await classDocRef.get();
         const events = [];
@@ -58,6 +61,15 @@ export async function GET(request) {
 
         const announcements = [];
 
+        const classDocRef2 = db.collection('users').doc(teacherID).collection('classes').doc(classID).collection('events')
+
+
+        const countQuery = classDocRef2.count();
+        const countSnapshot = await countQuery.get();
+        const totalSize = countSnapshot.data().count;
+
+
+
         for (const event of events) {
             console.log(event);
 
@@ -70,7 +82,8 @@ export async function GET(request) {
                 .collection('events')
                 .doc(event.id)
                 .collection('Students')
-                .doc(userID);
+                .doc(userID)
+
 
             try {
                 const studentDoc = await ref.get();
@@ -93,7 +106,7 @@ export async function GET(request) {
         }
 
         // Return or process announcements as needed
-        return NextResponse.json({ announcements }, { status: 200 });
+        return NextResponse.json({ announcements, totalSize }, { status: 200 });
         console.log(
             `Announcements retrieved for userID ${userID}, classID ${classID}:`,
             announcements
