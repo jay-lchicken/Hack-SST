@@ -165,7 +165,7 @@ export default function Home() {
           </h1>
         </div>
         <form
-          onSubmit={handle0Auth}
+          onSubmit={handleLogin}
           class="flex flex-col items-center justify-around gap-4 w-full  "
           name="auth"
         >
