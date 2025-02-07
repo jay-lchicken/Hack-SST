@@ -1,10 +1,10 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
+import { signInWithEmailAndPassword, onAuthStateChanged, signInWithRedirect } from 'firebase/auth';
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import {useRouter} from "next/navigation";
-
+import { OAuthProvider } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBUMv3D8Zv-o8vx76U3j9vkhC3vkbc_u1Y',
@@ -52,7 +52,17 @@ export default function Home() {
     // Cleanup listener on unmount
     return () => unsubscribe();
   }, []);
+  const handle0Auth = async (e) => {
+    e.preventDefault();
+    const provider = new OAuthProvider('oidc.auth0');
+    try {
+      localStorage.setItem('n:debug', 'true');
+      signInWithRedirect(auth, provider);
 
+    } catch (error) {
+      console.error('Error signing in with Google:', error);
+    }
+  }
   const handleLogin = async (e) => {
     setError(''); // Clear any previous error
     e.preventDefault();
@@ -155,7 +165,7 @@ export default function Home() {
           </h1>
         </div>
         <form
-          onSubmit={handleLogin}
+          onSubmit={handle0Auth}
           class="flex flex-col items-center justify-around gap-4 w-full  "
           name="auth"
         >

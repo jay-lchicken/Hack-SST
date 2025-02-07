@@ -4,10 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4b79a46b-3030-48a9-a32d-0e0678d17c27" name="Changes" comment="Fix typo in privateKey assignment, add offset parameter for announcements, and enhance UI loading experience">
+    <list default="true" id="4b79a46b-3030-48a9-a32d-0e0678d17c27" name="Changes" comment="Add Firebase authentication and improve README with project features and setup instructions">
+      <change afterPath="$PROJECT_DIR$/LICENSE" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/api/getStudentAttendance/route.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/getStudentAttendance/route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/student/class/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/student/class/page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/login/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/login/page.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,8 +22,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -31,6 +36,18 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="HARD" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;jay-lchicken&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/jay-lchicken/Hack-SST.git&quot;,
+    &quot;accountId&quot;: &quot;36eea820-ed6f-432a-a51a-dfc6c25fef91&quot;
+  }
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
@@ -56,6 +73,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ToggleCodyToolWindowAfterMigration&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/jay_lchicken/WebstormProjects/hackatsst/src/components&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
@@ -143,15 +161,16 @@
       <workItem from="1738585729984" duration="3559000" />
       <workItem from="1738624449203" duration="1070000" />
       <workItem from="1738633224900" duration="1115000" />
-      <workItem from="1738646908487" duration="682000" />
-    </task>
-    <task id="LOCAL-00006" summary="Edited the description and title">
-      <option name="closed" value="true" />
-      <created>1737710836939</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1737710836939</updated>
+      <workItem from="1738646908487" duration="731000" />
+      <workItem from="1738674754163" duration="197000" />
+      <workItem from="1738674981242" duration="640000" />
+      <workItem from="1738758088657" duration="3341000" />
+      <workItem from="1738761482929" duration="323000" />
+      <workItem from="1738883233087" duration="619000" />
+      <workItem from="1738883860210" duration="977000" />
+      <workItem from="1738899164328" duration="22000" />
+      <workItem from="1738899198170" duration="16000" />
+      <workItem from="1738899461088" duration="546000" />
     </task>
     <task id="LOCAL-00007" summary="Added view of students">
       <option name="closed" value="true" />
@@ -537,7 +556,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738589095156</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="Add offset parameter for announcements and improve loading experience">
+      <option name="closed" value="true" />
+      <created>1738647635276</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1738647635276</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -555,8 +582,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Modified Student View" />
-    <MESSAGE value="Added hyper link" />
     <MESSAGE value="Added Sorting" />
     <MESSAGE value="Fixed links ending with a fullstop" />
     <MESSAGE value="Added Time" />
@@ -580,6 +605,8 @@
     <MESSAGE value="Added GitHub" />
     <MESSAGE value="Refactor attendance fetching and improve UI components" />
     <MESSAGE value="Fix typo in privateKey assignment, add offset parameter for announcements, and enhance UI loading experience" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix typo in privateKey assignment, add offset parameter for announcements, and enhance UI loading experience" />
+    <MESSAGE value="Add offset parameter for announcements and improve loading experience" />
+    <MESSAGE value="Add Firebase authentication and improve README with project features and setup instructions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Firebase authentication and improve README with project features and setup instructions" />
   </component>
 </project>

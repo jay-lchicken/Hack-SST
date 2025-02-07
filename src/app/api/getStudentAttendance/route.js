@@ -71,7 +71,6 @@ export async function GET(request) {
 
 
         for (const event of events) {
-            console.log(event);
 
             // Reference to the student's document
             const ref = db

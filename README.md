@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# HackAtSST Attendance System
 
-## Getting Started
+A modern attendance tracking system built with Next.js and Firebase, designed to help teachers and administrators manage student attendance efficiently.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Admin/Teacher Authentication
+- Class Management
+  - Create and manage classes
+  - Add/remove students
+  - Post class announcements
+  - Schedule events and track attendance
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Student Features
+  - Join classes
+  - View announcements
+  - Track personal attendance history
+  - View upcoming events
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- Real-time Updates
+  - Attendance status updates
+  - Class announcements
+  - Event scheduling
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Tech Stack
 
-## Learn More
+- Next.js
+- Firebase Admin SDK
+- Firestore Database
+- Firebase Authentication
 
-To learn more about Next.js, take a look at the following resources:
+## Project Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The project uses API routes for server-side operations:
+- `/api/addAdminClasses` - Add new classes for admins
+- `/api/addAnnouncement` - Post class announcements
+- `/api/addEvent` - Schedule new events
+- `/api/addStudent` - Add students to classes
+- `/api/checkAdmin` - Verify admin privileges
+- `/api/formChangeStatus` - Update attendance status
+- `/api/getAdminClasses` - Fetch admin's classes
+- `/api/getClassAnnouncements` - Retrieve class announcements
+- `/api/getClassEvents` - Get scheduled events
+- `/api/getClassStudents` - List students in a class
+- `/api/getStudentAttendance` - View student attendance records
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Setup
 
-## Deploy on Vercel
+1. Clone the repository
+2. Install dependencies
+3. Configure Firebase credentials
+4. Run the development server
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Environment Variables
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Required Firebase configuration:
+- FIREBASE_SERVICE_ACCOUNT_KEY
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+[Add license information]
