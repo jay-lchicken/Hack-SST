@@ -61,6 +61,7 @@ export async function GET(req) {
         }
 
         // Parse response
+        const data = await response.json();
 
         if (!data.success) {
             return NextResponse.json({ error: "Failed to create DNS record", details: data.errors }, { status: 500 });
