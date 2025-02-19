@@ -19,7 +19,6 @@ export async function GET(req) {
 
         // Cloudflare API URL
         const CLOUDFLARE_API_URL = `https://api.cloudflare.com/client/v4/zones/${CLOUDFLARE_ZONE_ID}/dns_records`;
-        var data;
         // Construct the request payload
         if (TXT == "TXT"){
             const payload = {
@@ -40,7 +39,6 @@ export async function GET(req) {
                 },
                 body: JSON.stringify(payload),
             });
-            data = response;
         }else{
             const payload = {
                 comment: comment,
@@ -60,7 +58,6 @@ export async function GET(req) {
                 },
                 body: JSON.stringify(payload),
             });
-            data = response;
         }
 
         // Parse response
