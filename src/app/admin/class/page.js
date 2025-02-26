@@ -191,7 +191,7 @@ export default function Announcements() {
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
             {isAdmin ? (
-                <div className="w-full max-w-3xl bg-white shadow-md rounded-lg p-4">
+                <div className="w-full max-w-2xl md:max-w-6xl bg-white shadow-md rounded-lg max-h-[70%] h-[70vh] overflow-auto p-4">
                     <div className="flex items-center justify-between mb-4">
                         <h1 className="text-2xl font-bold mb-4">Class Announcements</h1>
                         <div>

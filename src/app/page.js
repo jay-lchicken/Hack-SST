@@ -1,268 +1,318 @@
+
 'use client';
-import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import { signInWithEmailAndPassword, onAuthStateChanged, signInWithRedirect } from 'firebase/auth';
+import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
+import {useRouter} from "next/navigation";
+import { OAuthProvider } from "firebase/auth";
+import {createAuth0Client} from '@auth0/auth0-spa-js';
+
+const auth0Client = await createAuth0Client({
+  domain: 'dev-xkvf20e8rm5sb3i6.us.auth0.com',
+  client_id: 'i9GkofRJoqtAfsHQgqFssfjRBeTnQgX1'
+});
+const firebaseConfig = {
+  apiKey: 'AIzaSyBUMv3D8Zv-o8vx76U3j9vkhC3vkbc_u1Y',
+  authDomain: 'hackatsst-52e39.firebaseapp.com',
+  projectId: 'hackatsst-52e39',
+  storageBucket: 'hackatsst-52e39.firebasestorage.app',
+  messagingSenderId: '693174506645',
+  appId: '1:693174506645:web:058e4de7d1763ab775379c',
+};
+
+// Initialize Firebase
+let auth; // Define `auth` outside of the component to make it globally accessible.
 
 export default function Home() {
+    const router = useRouter();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [user, setUser] = useState(null);
+  const [app, setApp] = useState(null);
+  useEffect(() => {
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    setApp(app);
+    auth = getAuth(app);
+
+    // Set up auth state listener
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      if (currentUser) {
+        console.log('User is signed in:', currentUser.email);
+        setUser(currentUser); // Update user state
+
+        // Call the API to check admin status
+        const isAdmin = await checkAdminStatus(currentUser.uid);
+        if (isAdmin) {
+          router.push('/admin/menu');
+        } else {
+          router.push('/student');
+        }
+      } else {
+        console.log('No user is signed in.');
+        setUser(null); // Reset user state
+      }
+    });
+
+    // Cleanup listener on unmount
+    return () => unsubscribe();
+  }, []);
+  const handle0Auth = async (e) => {
+    e.preventDefault();
+    const auth0User = await auth0Client.getUser();
+    const idToken = await auth0Client.getIdTokenClaims();
+
+    const firebaseUser = await app.auth().signInWithCustomToken(idToken.__raw);
+    console.log('Firebase User:', firebaseUser);
+  }
+  const handleLogin = async (e) => {
+    setError(''); // Clear any previous error
+    e.preventDefault();
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const isAdmin = await checkAdminStatus(userCredential.user.uid);
+
+      if (isAdmin) {
+
+        router.push('/admin/menu');
+      } else {
+        router.push('/student');
+      }
+    } catch (err) {
+      setError('Error logging you in'); // Display the error message
+      console.error('Error logging in:', err);
+    }
+  };
+  const checkAdminStatus = async (uid) => {
+    try {
+      const response = await fetch(`/api/checkAdmin?id=${uid}`);
+      if (!response.ok) {
+        console.error('Failed to check admin status:', await response.text());
+        return false;
+      }
+      const data = await response.json();
+      return data.isAdmin; // `isAdmin` is returned from the API
+    } catch (err) {
+      console.error('Error checking admin status:', err);
+      return false;
+    }
+  };
+
   return (
+    // <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+    //     <form
+    //         onSubmit={handleLogin}
+    //         className="flex flex-col items-center bg-white p-6 rounded-lg shadow-md"
+    //     >
+    //         <h1 className="text-2xl font-bold mb-4">Login</h1>
+    //         {error && <p className="text-red-500 text-sm mb-2">{error}</p>}
+    //         <input
+    //             type="email"
+    //             placeholder="Email"
+    //             value={email}
+    //             onChange={(e) => setEmail(e.target.value)}
+    //             className="w-64 h-10 bg-gray-200 rounded-xl px-4 text-red-500 m-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+    //         />
+    //         <input
+    //             type="password"
+    //             placeholder="Password"
+    //             value={password}
+    //             onChange={(e) => setPassword(e.target.value)}
+    //             className="w-64 h-10 bg-gray-200 rounded-xl text-red-500 px-4 m-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+    //         />
+    //         <button
+    //             type="submit"
+    //             className="w-64 h-10 bg-blue-500 text-white rounded-xl m-2 hover:bg-blue-600 transition-colors"
+    //         >
+    //             Login
+    //         </button>
+    //     </form>
+    // {user && (
+    //     <div className="mt-4">
+    //         <p className="text-green-500">Signed in as: {user.email}</p>
+    //     </div>
+    // )}
+    // </div>
+    <body class="bg-neutral-900">
 
-    <body class=" w-screen h-full">
-
-      <main class="bg-neutral-900 w-full flex flex-col justify-evenly items-center pb-8 m-0">
-        <header className="w-screen  flex justify-center items-center flex-wrap">
-          <h1 className="text-4xl text-red-500 font-bold md:text-6xl pl-2">
-            Hack@SST
+      <main class="bg-neutral-900 w-full flex flex-row items-center m-0 justify-between">
+        <div class="w-2/3 flex flex-col items-center justify-center">
+          <div class="mt-9 max-w-screen-lg w-[80%] p-10 mx-[10%] flex flex-col items-center">
+          <img
+            class="w-full md:w-[45%]"
+            src="https://assets.hackclub.com/flag-standalone-wtransparent.svg"
+            alt="https://assets.hackclub.com/flag-standalone-wtransparent.svg"
+          />
+          <h1 class="text-2xl text-white font-bold w-[80%] text-center md:text-4xl pt-9 pb-3 md:w-[50%]">
+            Login
           </h1>
-          <h1 class="h-[60px] w-36 text-xl font-semibold text-white">
-            a branch of
-
-            <span>
-                <a
-                    href="https://hackclub.com"
-                    target="_blank"
-                    class="text-xl font-semibold text-red-500 underline hover:decoration-wavy px-1"
+        </div>
+        <form
+          onSubmit={handleLogin}
+          class="flex flex-col items-center justify-around gap-4 w-full  "
+          name="auth"
+        >
+          {user && (
+                <div
+                    className="mb-10 relative w-full max-w-96 flex flex-wrap items-center justify-center py-3 pl-4 pr-14 rounded-lg text-base font-medium [transition:all_0.5s_ease] border-solid border border-[#4CAF50] text-[#2D6A4F] [&_svg]:text-[#2D6A4F] group bg-[linear-gradient(#4CAF501a,#4CAF501a)]"
                 >
-                  Hack Club
-                </a>
-              </span>
-          </h1>
-        </header>
-        <div class="mt-9 max-w-screen-lg w-[80%] p-10 mx-[10%] flex flex-col items-center">
-          <img
-            class="w-full md:w-[60%]"
-            src="https://assets.hackclub.com/flag-standalone.svg"
-            alt="https://assets.hackclub.com/flag-standalone.svg"
-          />
-          <h1 class="text-2xl text-red-500 font-bold md:text-4xl pt-9 pb-3">
-            Welcome Aboard!
-          </h1>
-          <h1 class="w-[90%] text-xl font-normal text-white text-center md:w-[40%]">
-            This is the official
-            <span>
-              <a class="text-xl font-normal text-red-500 underline hover:decoration-wavy cursor-pointer px-1">
-                Hack@SST
-              </a>
-            </span>
-            page and
-            <span>
-              <a class="text-xl font-normal text-red-500 underline hover:decoration-wavy cursor-pointer px-1">
-                Member's Portal
-              </a>
-            </span>
-            , find out everything about us!
-          </h1>
-          <button className="animated-button mt-4" onClick={() => window.location.href="/login"}>
-            <svg viewBox="0 0 24 24" className="arr-2" xmlns="http://www.w3.org/2000/svg">
-              <path
-                  d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
-              ></path>
-            </svg>
-            <span className="text">Sign In As Member</span>
-            <span className="circle"></span>
-            <svg viewBox="0 0 24 24" className="arr-1" xmlns="http://www.w3.org/2000/svg">
-              <path
-                  d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
-              ></path>
-            </svg>
-          </button>
+                  <button
+                      type="button"
+                      aria-label="close-error"
+                      onClick={() => setError("")}
+                      className="absolute right-4 p-1 rounded-md transition-opacity text-[#4CAF50] border border-[#4CAF50] opacity-40 hover:opacity-100"
+                  >
+                    <svg
+                        stroke="currentColor"
+                        fill="none"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        height="16"
+                        width="16"
+                        className="sizer [--sz:16px] h-4 w-4"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M18 6 6 18"></path>
+                      <path d="m6 6 12 12"></path>
+                    </svg>
+                  </button>
+                  <p className="flex flex-row items-center mr-auto gap-x-2">
+                    <svg
+                        stroke="currentColor"
+                        fill="none"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        height="28"
+                        width="28"
+                        className="h-7 w-7"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
+                      <path d="M12 9v4"></path>
+                      <path d="M12 17h.01"></path>
+                    </svg>
+                    Signed In As: {user.email}
+                  </p>
+                </div>
+            )}
+            {error &&
+                <div
+                    className="mb-10 relative w-full max-w-96 flex flex-wrap items-center justify-center py-3 pl-4 pr-14 rounded-lg text-base font-medium [transition:all_0.5s_ease] border-solid border border-[#f85149] text-[#b22b2b] [&amp;_svg]:text-[#b22b2b] group bg-[linear-gradient(#f851491a,#f851491a)] "
+                >
+                  <button
+                      type="button"
+                      aria-label="close-error"
+                        onClick={() => setError('')}
+                      className="absolute right-4 p-1 rounded-md transition-opacity text-[#f85149] border border-[#f85149] opacity-40 hover:opacity-100"
+                  >
+                    <svg
+                        stroke="currentColor"
+                        fill="none"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        height="16"
+                        width="16"
+                        className="sizer [--sz:16px] h-4 w-4"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M18 6 6 18"></path>
+                      <path d="m6 6 12 12"></path>
+                    </svg>
+                  </button>
+                  <p className="flex flex-row items-center mr-auto gap-x-2">
+                    <svg
+                        stroke="currentColor"
+                        fill="none"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        height="28"
+                        width="28"
+                        className="h-7 w-7"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                          d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"
+                      ></path>
+                      <path d="M12 9v4"></path>
+                      <path d="M12 17h.01"></path>
+                    </svg>
+                    Incorrect Username or Password
+                  </p>
+                </div>
 
+            }
+
+            <div className="input__container">
+              <div className="shadow__input"></div>
+              <button className="input__button__shadow">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="#000000"
+                    width="20px"
+                    height="20px"
+                >
+                  <path d="M0 0h24v24H0z" fill="none"></path>
+                  <path
+                      d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+                  ></path>
+                </svg>
+              </button>
+              <input
+                  className="password-input"
+                  type="email"
+                  placeholder="Type your email..."
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div className="input__container mt-8 mb-8">
+              <div className="shadow__input"></div>
+              <button className="input__button__shadow">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="#000000"
+                    width="20px"
+                    height="20px"
+                >
+                  <path d="M0 0h24v24H0z" fill="none"/>
+                  <path d="M21 18h-2v-2h-2v2h-2v2h2v2h2v-2h2v-2zM12.65 10C11.83 7.67 9.61 6 7 6c-3.31 0-6 2.69-6 6s2.69 6 6 6c2.61 0 4.83-1.67 5.65-4H17v4h4v-4h2v-4H12.65zM7 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
+                </svg>
+              </button>
+              <input
+                  className="password-input"
+                  type="password"
+                  placeholder="Type your password..."
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <button className="button">Login</button>
+        </form>
         </div>
-        <div class="max-w-screen-lg w-[80%] p-10 mx-[10%] mb-[4%] bg-neutral-800 rounded-3xl md:p-14">
-          <img
-              class="h-auto w-full object-cover rounded-3xl mb-4"
-              src="./BannerImg1.jpg"
-              alt="./BannerImg1.jpg"
-          />
-          <h1 class="text-xl font-bold text-white pb-3 md:text-2xl">
-            Who Are We?
-          </h1>
-          <h1 class="text-xl font-light text-white">
-            Hi, we are
-            <span>
-              <a class="text-xl font-normal text-red-500 underline hover:decoration-wavy cursor-pointer px-1">
-                Hack@SST
-              </a>
-            </span>
-            , student initiated club in our secondary school,
-            <span>
-              <a
-                href="https://www.sst.edu.sg/"
-                class="text-xl font-normal text-red-500 underline hover:decoration-wavy cursor-pointer px-1"
-                target="_blank"
-              >
-                School Of Science And Technology
-              </a>
-            </span>
-            . Started in 2025, my friend
-            <span>
-              <a
-                href="https://github.com/jay-lchicken"
-                target="_blank"
-                class="text-xl font-normal text-red-500 underline hover:decoration-wavy cursor-pointer px-1"
-              >
-                Hong Yu
-              </a>
-            </span>
-            asked
-            <span>
-              <a
-                href="https://github.com/miri-takutodoji-fukito"
-                target="_blank"
-                class="text-xl font-normal text-red-500 underline hover:decoration-wavy cursor-pointer px-1"
-              >
-                me
-              </a>
-            </span>
-            to help him bring
-            <span>
-              <a
-                href="https://hackclub.com"
-                target="_blank"
-                class="text-xl font-normal text-red-500 underline hover:decoration-wavy cursor-pointer px-1"
-              >
-                Hack Club
-              </a>
-            </span>
-            into the school, in hopes to build a community of just hobby coders,
-            even if they didn't know coding. We wanted to make coding a norm to
-            people who didn't expect to see it in that way.
-          </h1>
-        </div>
-        <div class="max-w-screen-lg w-[80%] p-10 mx-[10%] mb-[4%] bg-neutral-800 rounded-3xl md:p-14">
-          <img
-            class="h-auto w-full object-cover rounded-3xl mb-4"
-            src="./BannerImg2.png"
-            alt="./BannerImg2.png"
-          />
-          <h1 class="text-xl font-bold text-white pb-3 md:text-2xl">
-            What Is
-            <span>
-              <a
-                href="https://hackclub.com"
-                target="_blank"
-                class="text-xl font-bold text-red-500 underline hover:decoration-wavy md:text-2xl px-1"
-              >
-                Hack Club
-              </a>
-            </span>
-            ?
-          </h1>
-          <h1 class="text-xl font-light text-white">
-            <span>
-              <a
-                href="https://hackclub.com"
-                target="_blank"
-                class="text-xl font-normal text-red-500 underline hover:decoration-wavy cursor-pointer px-1"
-              >
-                Hack Club
-              </a>
-            </span>
-            is a non-profit based in the US which aims to build an
-            internationally connected groups of teen Hackers and to encourage
-            the building of these skills.
-            <span>
-              <a
-                href="https://hackclub.com"
-                target="_blank"
-                class="text-xl font-normal text-red-500 underline hover:decoration-wavy cursor-pointer px-1"
-              >
-                Hack Club
-              </a>
-            </span>
-            also hosts hackathons and multiple events every year, and even have
-            a rewards system to encourage and acknowledge the efforts and works
-            of Hackers in the community
-          </h1>
-        </div>
-        <div class="max-w-screen-lg w-[80%] p-10 mx-[10%] mb-[4%] bg-neutral-800 rounded-3xl md:p-14">
-          <h1 class="text-xl font-bold text-white pb-3 md:text-2xl">
-            Who Are Hackers?
-          </h1>
-          <h1 class="text-xl font-light text-white">
-            I've been using the word
-            <span>
-              <a class="text-xl font-normal text-red-500 underline hover:decoration-wavy cursor-pointer px-1">
-                Hackers
-              </a>
-            </span>
-            over the website and you might be concerned of what it even means.
-            The teen
-            <span>
-              <a class="text-xl font-normal text-red-500 underline hover:decoration-wavy cursor-pointer px-1">
-                Hackers
-              </a>
-            </span>
-            I am referring to are not
-            <span>
-              <a
-                href="https://www.google.com/search?q=what+is+a+hacker&sca_esv=0dfdeba661b81aed&sxsrf=AHTn8zpGU7BxwhPSL58k-2ROwzHqOBFwQA%3A1737623619181&ei=QwiSZ827Cs_U4-EPlIuegQs&ved=0ahUKEwiN6cu0wIuLAxVP6jgGHZSFJ7AQ4dUDCBI&uact=5&oq=what+is+a+hacker&gs_lp=Egxnd3Mtd2l6LXNlcnAiEHdoYXQgaXMgYSBoYWNrZXIyCxAAGIAEGJECGIoFMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgAQyBxAAGIAEGApIgx5Q1QxYrRxwA3gBkAEAmAF5oAGoCKoBBDE3LjG4AQPIAQD4AQGYAhWgAvUIwgIKEAAYsAMY1gQYR8ICChAjGIAEGCcYigXCAhAQABiABBixAxhDGIMBGIoFwgIREC4YgAQYsQMY0QMYgwEYxwHCAgsQABiABBixAxiDAcICBBAjGCfCAgoQABiABBhDGIoFwgIIEC4YgAQYsQPCAhYQLhiABBixAxjRAxhDGIMBGMcBGIoFwgIIEAAYgAQYsQPCAgoQABiABBgUGIcCmAMAiAYBkAYIkgcEMTkuMqAH_IsB&sclient=gws-wiz-serp"
-                target="_blank"
-                class="text-xl font-normal text-red-500 underline hover:decoration-wavy cursor-pointer px-1"
-              >
-                digital privacy invaders
-              </a>
-            </span>
-            , in
-            <span>
-              <a
-                href="https://hackclub.com"
-                target="_blank"
-                class="text-xl font-normal text-red-500 underline hover:decoration-wavy cursor-pointer px-1"
-              >
-                Hack Club
-              </a>
-            </span>
-            we like to call ourselves
-            <span>
-              <a class="text-xl font-normal text-red-500 underline hover:decoration-wavy cursor-pointer px-1">
-                Hackers
-              </a>
-            </span>
-            as we are
-            <span>
-              <a class="text-xl font-normal text-red-500 underline hover:decoration-wavy cursor-pointer px-1">
-                creators
-              </a>
-            </span>
-            who want to
-            <span>
-              <a class="text-xl font-normal text-red-500 underline hover:decoration-wavy cursor-pointer px-1">
-                make a difference
-              </a>
-            </span>
-            in the world and leave it better than when we came.
-          </h1>
-        </div>
-        <div class="max-w-screen-lg w-[80%] p-10 mx-[10%] mb-[4%] bg-neutral-800 rounded-3xl md:p-14 flex flex-col justify-center gap-7">
-          <h1 class="text-xl font-bold text-white md:text-2xl">Registration</h1>
-          <h1 class="text-xl font-light text-white">
-            <span>
-              <a class="text-xl font-normal text-red-500 underline hover:decoration-wavy cursor-pointer px-1">
-                Hack@SST
-              </a>
-            </span>
-            registrations start around late Febuary and end by mid to late March
-            to Sec 1s with a rough intake of 20-30 members every year
-          </h1>
-          <div class="flex flex-col items-center gap-3">
-            <button className="animated-button mt-4" >
-              <svg viewBox="0 0 24 24" className="arr-2" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
-                ></path>
-              </svg>
-              <span className="text">Registration Closed</span>
-              <span className="circle"></span>
-              <svg viewBox="0 0 24 24" className="arr-1" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
-                ></path>
-              </svg>
-            </button>
-            {/* <a class="text-white font-normal hover:font-bold" href="reg.html">
-              Find Out More
-            </a> */}
-          </div>
-        </div>
+<div class="w-1/2 h-screen flex items-stretch justify-end">
+  <img class="h-full w-auto object-cover" src="/189497810-6d9d2920-6bee-4990-9553-57699918ae9c.png"/>
+</div>
+
+
       </main>
     </body>
   );
 }
+
+
