@@ -106,7 +106,7 @@ export default function Home() {
     const logout = async () => {
         try {
             await signOut(auth);
-            router.push("/login");
+            router.push("/");
         } catch (err) {
             console.error("Error logging out:", err.message);
         }

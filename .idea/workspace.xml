@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4b79a46b-3030-48a9-a32d-0e0678d17c27" name="Changes" comment="Add Firebase authentication, update layout, and enhance page responsiveness">
+    <list default="true" id="4b79a46b-3030-48a9-a32d-0e0678d17c27" name="Changes" comment="Remove UserProvider from layout and clean up imports">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/admin/menu/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/admin/menu/page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/student/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/student/page.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,23 +181,7 @@
       <workItem from="1739871227432" duration="5000" />
       <workItem from="1739871237607" duration="718000" />
       <workItem from="1740570912682" duration="82000" />
-      <workItem from="1740571002696" duration="3442000" />
-    </task>
-    <task id="LOCAL-00010" summary="Fixed Login button Test 1">
-      <option name="closed" value="true" />
-      <created>1737787397207</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1737787397207</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Removed Tracking">
-      <option name="closed" value="true" />
-      <created>1737787735303</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1737787735303</updated>
+      <workItem from="1740571002696" duration="4098000" />
     </task>
     <task id="LOCAL-00012" summary="Trying Analytics Tracking">
       <option name="closed" value="true" />
@@ -572,15 +559,41 @@
       <option name="project" value="LOCAL" />
       <updated>1740574096576</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="Add Firebase authentication, update layout, and enhance page responsiveness">
+      <option name="closed" value="true" />
+      <created>1740574626905</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1740574626905</updated>
+    </task>
+    <task id="LOCAL-00060" summary="Remove UserProvider from layout and clean up imports">
+      <option name="closed" value="true" />
+      <created>1740574871668</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1740574871668</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="04e8d192-54f2-4e82-8b98-bb408e194c5a" value="TOOL_WINDOW" />
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
+        <entry key="04e8d192-54f2-4e82-8b98-bb408e194c5a">
+          <value>
+            <State />
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
             <State />
@@ -590,7 +603,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added Time" />
     <MESSAGE value="Changed window.location.href to Router" />
     <MESSAGE value="Added Hover" />
     <MESSAGE value="Fixed Events Button not working" />
@@ -615,6 +627,7 @@
     <MESSAGE value="Add Firebase authentication and improve README with project features and setup instructions" />
     <MESSAGE value="Fix login form submission handler and update project configuration files" />
     <MESSAGE value="Add Firebase authentication, update layout, and enhance page responsiveness" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Firebase authentication, update layout, and enhance page responsiveness" />
+    <MESSAGE value="Remove UserProvider from layout and clean up imports" />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove UserProvider from layout and clean up imports" />
   </component>
 </project>

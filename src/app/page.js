@@ -5,13 +5,8 @@ import { signInWithEmailAndPassword, onAuthStateChanged, signInWithRedirect } fr
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import {useRouter} from "next/navigation";
-import { OAuthProvider } from "firebase/auth";
-import {createAuth0Client} from '@auth0/auth0-spa-js';
 
-const auth0Client = await createAuth0Client({
-  domain: 'dev-xkvf20e8rm5sb3i6.us.auth0.com',
-  client_id: 'i9GkofRJoqtAfsHQgqFssfjRBeTnQgX1'
-});
+
 const firebaseConfig = {
   apiKey: 'AIzaSyBUMv3D8Zv-o8vx76U3j9vkhC3vkbc_u1Y',
   authDomain: 'hackatsst-52e39.firebaseapp.com',
@@ -59,14 +54,6 @@ export default function Home() {
     // Cleanup listener on unmount
     return () => unsubscribe();
   }, []);
-  const handle0Auth = async (e) => {
-    e.preventDefault();
-    const auth0User = await auth0Client.getUser();
-    const idToken = await auth0Client.getIdTokenClaims();
-
-    const firebaseUser = await app.auth().signInWithCustomToken(idToken.__raw);
-    console.log('Firebase User:', firebaseUser);
-  }
   const handleLogin = async (e) => {
     setError(''); // Clear any previous error
     e.preventDefault();
@@ -142,7 +129,7 @@ export default function Home() {
     <body class="bg-neutral-900">
 
       <main class="bg-neutral-900 w-full flex flex-row items-center m-0 justify-between">
-        <div class="w-2/3 flex flex-col items-center justify-center">
+        <div class="w-full md:w-2/3 flex flex-col items-center justify-center">
           <div class="mt-9 max-w-screen-lg w-[80%] p-10 mx-[10%] flex flex-col items-center">
           <img
             class="w-full md:w-[45%]"
@@ -305,7 +292,7 @@ export default function Home() {
             <button className="button">Login</button>
         </form>
         </div>
-<div class="w-1/2 h-screen flex items-stretch justify-end">
+<div class="hidden md:flex w-1/2 h-screen items-stretch justify-end">
   <img class="h-full w-auto object-cover" src="/189497810-6d9d2920-6bee-4990-9553-57699918ae9c.png"/>
 </div>
 
