@@ -4,16 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4b79a46b-3030-48a9-a32d-0e0678d17c27" name="Changes" comment="Fix login form submission handler and update project configuration files">
-      <change afterPath="$PROJECT_DIR$/src/app/api/addDNS/route.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/page2.js" afterDir="false" />
+    <list default="true" id="4b79a46b-3030-48a9-a32d-0e0678d17c27" name="Changes" comment="Add Firebase authentication, update layout, and enhance page responsiveness">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/admin/class/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/admin/class/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/login/page.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -186,15 +178,7 @@
       <workItem from="1739871227432" duration="5000" />
       <workItem from="1739871237607" duration="718000" />
       <workItem from="1740570912682" duration="82000" />
-      <workItem from="1740571002696" duration="2731000" />
-    </task>
-    <task id="LOCAL-00009" summary="Added Student View">
-      <option name="closed" value="true" />
-      <created>1737787130718</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1737787130718</updated>
+      <workItem from="1740571002696" duration="3442000" />
     </task>
     <task id="LOCAL-00010" summary="Fixed Login button Test 1">
       <option name="closed" value="true" />
@@ -580,7 +564,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738925788603</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="Add Firebase authentication, update layout, and enhance page responsiveness">
+      <option name="closed" value="true" />
+      <created>1740574096576</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1740574096576</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -598,7 +590,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed links ending with a fullstop" />
     <MESSAGE value="Added Time" />
     <MESSAGE value="Changed window.location.href to Router" />
     <MESSAGE value="Added Hover" />
@@ -623,6 +614,7 @@
     <MESSAGE value="Add offset parameter for announcements and improve loading experience" />
     <MESSAGE value="Add Firebase authentication and improve README with project features and setup instructions" />
     <MESSAGE value="Fix login form submission handler and update project configuration files" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix login form submission handler and update project configuration files" />
+    <MESSAGE value="Add Firebase authentication, update layout, and enhance page responsiveness" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Firebase authentication, update layout, and enhance page responsiveness" />
   </component>
 </project>
