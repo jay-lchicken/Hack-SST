@@ -13,10 +13,21 @@ const firebaseConfig = {
 
 
 export async function GET(request) {
-    const { searchParams } = new URL(request.url);
+    const app = initializeApp(firebaseConfig);
+    try {
+        const { searchParams } = new URL(request.url);
         const email = searchParams.get('email');
 
-        const app = initializeApp(firebaseConfig);
+        if (!email) {
+            return NextResponse.json({ success: false, error: 'Email is required' }, { status: 400 });
+        }
+
         const auth = getAuth(app);
         await sendPasswordResetEmail(auth, email);
+
+        return NextResponse.json({ success: true, message: 'Password reset email sent successfully' }, { status: 200 });
+    } catch (error) {
+        console.error('Error sending password reset email:', error.message);
+        return NextResponse.json({ success: false, error: 'Failed to send password reset email', details: error.message }, { status: 500 });
+    }
 }
