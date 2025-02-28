@@ -54,6 +54,9 @@ export default function Home() {
     // Cleanup listener on unmount
     return () => unsubscribe();
   }, []);
+  const goReset = () => {
+    router.push('/reset');
+  };
   const handleLogin = async (e) => {
     setError(''); // Clear any previous error
     e.preventDefault();
@@ -289,7 +292,8 @@ export default function Home() {
                   onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <button className="button">Login</button>
+            <button className={"button"}>Login</button>
+          <button className={"button"} onClick={goReset}>Reset</button>
         </form>
         </div>
 <div class="hidden md:flex w-1/2 h-screen items-stretch justify-end">

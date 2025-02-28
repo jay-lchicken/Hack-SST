@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4b79a46b-3030-48a9-a32d-0e0678d17c27" name="Changes" comment="Add password reset API endpoint using Firebase authentication" />
+    <list default="true" id="4b79a46b-3030-48a9-a32d-0e0678d17c27" name="Changes" comment="Add password reset functionality with Firebase authentication">
+      <change afterPath="$PROJECT_DIR$/src/app/reset/page.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -179,15 +181,7 @@
       <workItem from="1740571002696" duration="6080000" />
       <workItem from="1740634833607" duration="622000" />
       <workItem from="1740637977711" duration="616000" />
-      <workItem from="1740722482607" duration="971000" />
-    </task>
-    <task id="LOCAL-00016" summary="Added Change Of Attendance Status">
-      <option name="closed" value="true" />
-      <created>1737874811063</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1737874811063</updated>
+      <workItem from="1740722482607" duration="1305000" />
     </task>
     <task id="LOCAL-00017" summary="Added Student View For attendance">
       <option name="closed" value="true" />
@@ -573,7 +567,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740723325441</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="Add password reset functionality with Firebase authentication">
+      <option name="closed" value="true" />
+      <created>1740723545464</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1740723545464</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -601,7 +603,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added form api" />
     <MESSAGE value="Added Debugging" />
     <MESSAGE value="Changed Format" />
     <MESSAGE value="Fixed Bug" />
@@ -626,6 +627,7 @@
     <MESSAGE value="Commit image" />
     <MESSAGE value="Update layout metadata for Hack Club LMS" />
     <MESSAGE value="Add password reset API endpoint using Firebase authentication" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add password reset API endpoint using Firebase authentication" />
+    <MESSAGE value="Add password reset functionality with Firebase authentication" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add password reset functionality with Firebase authentication" />
   </component>
 </project>
