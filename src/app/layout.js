@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Hack@SST",
-  description: "Simply the best in SST!",
+  title: "Hack Club LMS",
+  description: "A Open Source LMS for Hack Club",
 };
 
 export default function RootLayout({ children }) {
