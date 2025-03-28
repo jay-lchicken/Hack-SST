@@ -191,7 +191,7 @@ export default function Announcements() {
                         ☰ Events
                     </button>
                 </div>
-                <ul className="overflow-y-auto overflow-x-clip max-h-[80%] flex flex-wrap">
+                <ul className="overflow-y-auto overflow-x-clip max-h-[80%] flex flex-wrap ">
                     {announcements.length > 0 ? (
                         announcements
                             .sort((a, b) => {
@@ -202,9 +202,9 @@ export default function Announcements() {
                             .map((announcement) => (
                             <li
                                 key={announcement.id}
-                                className="p-4 border-b border-neutral-700  flex flex-col justify-start flex-wrap "
+                                className="p-4 border-b border-neutral-700  flex flex-col justify-start flex-wrap bg-neutral-700 rounded-2xl w-full mb-4"
                             >
-                                <h1 className="text-white text-4xl mb-2">{announcement.title}</h1>
+                                <h1 className="text-white text-4xl mb-2 font-bold">{announcement.title}</h1>
                                 <h2>{new Date(announcement.timestamp._seconds * 1000 + announcement.timestamp._nanoseconds / 1e6).toLocaleString()}</h2>
                                 <span>
                                     {announcement.description.split(' ').map((word, index) => {

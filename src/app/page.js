@@ -5,7 +5,7 @@ import { signInWithEmailAndPassword, onAuthStateChanged, signInWithRedirect } fr
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import {useRouter} from "next/navigation";
-
+import Popup from "@/components/popup";
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBUMv3D8Zv-o8vx76U3j9vkhC3vkbc_u1Y',
@@ -130,6 +130,7 @@ export default function Home() {
     // )}
     // </div>
     <body class="bg-neutral-900">
+
 
       <main class="bg-neutral-900 w-full flex flex-row items-center m-0 justify-between">
         <div class="w-full md:w-2/3 flex flex-col items-center justify-center">
