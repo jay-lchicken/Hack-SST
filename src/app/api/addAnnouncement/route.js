@@ -1,7 +1,9 @@
 import { NextResponse } from 'next/server';
 import * as admin from 'firebase-admin';
 
-if (!admin.apps.length) {
+
+export async function POST(request) {
+    if (!admin.apps.length) {
     try {
         const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY);
 
@@ -20,7 +22,6 @@ if (!admin.apps.length) {
     }
 }
 
-export async function POST(request) {
     try {
         const { searchParams } = new URL(request.url);
 

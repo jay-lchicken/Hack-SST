@@ -2,7 +2,10 @@ import { NextResponse } from 'next/server';
 import * as admin from 'firebase-admin';
 import * as sea from "node:sea";
 
-if (!admin.apps.length) {
+
+
+export async function POST(request) {
+    if (!admin.apps.length) {
     try {
         const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY);
 
@@ -20,8 +23,6 @@ if (!admin.apps.length) {
         throw new Error('Failed to initialize Firebase Admin SDK. Check your environment variables.');
     }
 }
-
-export async function POST(request) {
     try {
         const { searchParams } = new URL(request.url);
 

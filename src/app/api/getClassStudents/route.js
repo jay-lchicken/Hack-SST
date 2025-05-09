@@ -1,7 +1,10 @@
 import { NextResponse } from 'next/server';
 import * as admin from 'firebase-admin';
 
-// Initialize Firebase Admin SDK if not already initialized
+
+
+export async function GET(request) {
+    // Initialize Firebase Admin SDK if not already initialized
 if (!admin.apps.length) {
     try {
         const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY);
@@ -20,8 +23,6 @@ if (!admin.apps.length) {
         throw new Error('Failed to initialize Firebase Admin SDK. Check your environment variables.');
     }
 }
-
-export async function GET(request) {
     try {
         const { searchParams } = new URL(request.url);
         const userID = searchParams.get('userID'); // Retrieve the "userID" parameter from the query string

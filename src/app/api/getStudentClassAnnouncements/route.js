@@ -3,7 +3,10 @@ import * as admin from 'firebase-admin';
 import {off} from "next/dist/client/components/react-dev-overlay/pages/bus";
 
 // Initialize Firebase Admin SDK if not already initialized
-if (!admin.apps.length) {
+
+
+export async function GET(request) {
+    if (!admin.apps.length) {
     try {
         const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY);
 
@@ -21,8 +24,6 @@ if (!admin.apps.length) {
         throw new Error('Failed to initialize Firebase Admin SDK. Check your environment variables.');
     }
 }
-
-export async function GET(request) {
     try {
         const { searchParams } = new URL(request.url);
         const userID = searchParams.get('userID'); // Retrieve the "userID" parameter from the query string
