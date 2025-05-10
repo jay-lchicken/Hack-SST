@@ -17,6 +17,9 @@ export async function GET(request) {
         console.log('Firebase Admin SDK initialized.');
     } catch (error) {
         console.error('Error initializing Firebase Admin SDK:', error.message);
+        console.error(process.env.FIREBASE_PROJECT_ID)
+        console.error(process.env.FIREBASE_CLIENT_EMAIL)
+        console.error(process.env.FIREBASE_PRIVATE_KEY)
         throw new Error('Failed to initialize Firebase Admin SDK. Check your environment variables.');
     }
 }
