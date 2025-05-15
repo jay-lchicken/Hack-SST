@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 import * as admin from 'firebase-admin';
-import * as sea from "node:sea";
 
 // Initialize Firebase Admin SDK if not already initialized
 if (!admin.apps.length) {

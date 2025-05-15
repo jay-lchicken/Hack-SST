@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 import * as admin from 'firebase-admin';
-import * as sea from "node:sea";
 
 if (!admin.apps.length) {
     try {
